@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+/* 리셋 스타일 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Raleway, sans-serif;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffd9c6; /* 배경 색*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.member {
+  font-size: 14px;
+  height: 600px;
+  width: 360px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff; /* 박스 색 */
+  border: 1px solid #ccc; /* 박스 테두리 색 */
+  border-radius: 5px;
+  border: none;
+}
+
+.member b {
+  font-weight: bold;
+}
+
+/* 각 필드 사이 간격 */
+.field_name,
+.field_id,
+.field_password,
+.field_password_check,
+.field_birth,
+.field_email,
+.field_number {
+  margin-top: 4px;
+  margin-bottom: 14px;
+}
+
+.field_id {
+  position: relative;
+}
+
+.field_id input {
+  width: 100%;
+  padding: 5px;
+}
+
+.field_id button {
+  position: absolute;
+  top: 2px;
+  right: 3px;
+  bottom: 2px;
+  padding: 6px 8px;
+  background-color: #ffa99a;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.field_id button:hover {
+  background-color: #c28175;
+}
+
+.error_next_box {
+  margin-top: 10px;
+  font-size: 13px;
+  color: red;
+  display: none;
+}
+
+.field_birth {
+  display: flex;
+  align-items: center;
+}
+
+.field_email {
+  display: flex;
+  align-items: center;
+}
+
+select {
+  margin-right: 15px;
+}
+
+
+input[type="text"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+input[type="submit"] {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #ffa99a;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+input[type="reset"] {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #ad9e98;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+
+input[type="submit"]:hover {
+  background-color: #c28175;
+}
+
+input[type="reset"]:hover {
+  background-color: #847874;
+}

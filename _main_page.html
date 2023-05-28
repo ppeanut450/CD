@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> 메인화면 </title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="_main_page.css">
+    <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- 오늘의 추천 메뉴는 @@입니다! -->
+    <script type="text/javascript" src="_food_recom.js"></script>
+    <!-- 사이드 바 -->
+    <script type="text/javascript" src="_side_bar.js"></script>
+</head>
+<body onload="setRandomFood()">
+    <!-- 바로가기 목록 버튼 -->
+    <div id="wrapper">
+        <div class="topbar" style="position: absolute; top:0;">
+            <!-- 왼쪽 메뉴 -->
+            <div class="left side-menu">
+                <div class="sidebar-inner">
+                    <div id="sidebar-menu">
+                        <ul>
+                            <li class="has_sub"><a href="javascript:void(0);" class="waves-effect">
+                                <i class="fas fa-bars"></i>
+                            </a></li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-outter">
+                        
+                            <a href="javascript:void(0);" class="waves-effect">
+                            <button type="sidebar_info_left" class="list_btn">
+                                <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fmhy5u%2Fbtshz0pWsKA%2F5ldl8mMklDrlnNEQdKBKBk%2Fimg.png" width="38" height="38">
+                            </button>
+                            </a>
+                       
+                        <button type="sidebar_info_left" class="side_user">
+                            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FBBqgT%2FbtshCgk8Iud%2FgPM9jKKbs3miEzQpzrOAK1%2Fimg.png" width="38" height="38">
+                        </button>
+                        <button type="sidebar_info_left" class="side_alarm">
+                            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fcw22RG%2FbtshHM4JcSa%2F6rsobR2CdVvhyjoKLLtwY0%2Fimg.png" width="36" height="36">
+                        </button>
+                        <button type="sidebar_info_left" class="side_search">
+                            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FkFoMC%2FbtshAqoLA2f%2FLQ3iZLKAgRvbFUmQ9bzTrk%2Fimg.png" width="38" height="38">
+                        </button>
+                        <button type="sidebar_info_left" class="side_board">
+                            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb1dZ9c%2FbtshA0wcGtI%2FwtE7koc7WRiCLQvSUEoAc0%2Fimg.png" width="38" height="38">
+                        </button>
+                        <button type="sidebar_info_left" class="side_rank">
+                            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdbUFey%2FbtshRydJ8j3%2FSXxTA9Utn0WubN1dZTE1F0%2Fimg.png" width="38" height="38">
+                        </button>
+                        <button type="sidebar_info_left" class="side_setting">
+                            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbeNYyT%2FbtshBkHYbMM%2FxemSvtsBkVr8aZJYgp7xg1%2Fimg.png" width="38" height="38">
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- 왼쪽 서브 메뉴 -->
+            <div class="left_sub_menu">
+                <div class="sub_menu">
+                    <h2>FLAVOR</h2>
+                    <ul class="big_menu">
+                        <li> <button type="sidebar_info_right" class="bar_user">
+                            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcfAkVr%2FbtshKRx4lhW%2FNMhl5ydIsx24ftvl7uBSMk%2Fimg.png" width="38" height="38" style="margin-right: 20px;">
+                        </button> 내 정보 </li> <i class="arrow fas fa-angle-right"></i></li>
+                        <ul class="small_menu">
+                            <li><a href="#">소메뉴1-1</a></li>
+                            <li><a href="#">소메뉴1-2</a></li>
+                            <li><a href="">소메뉴1-3</a></li>
+                            <li><a href="#">소메뉴1-4</a></li>
+                        </ul>
+                    </ul>
+                    <ul class="big_menu">
+                        <li> <button type="sidebar_info_right" class="bar_alarm">
+                            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FlDe9P%2FbtshAwISWXR%2FQJphyK35oqn6rXtHNI54hK%2Fimg.png" width="38" height="38" style="margin-right: 20px;">
+                        </button> 알림 <i class="arrow fas fa-angle-right"></i></li>
+                        <ul class="small_menu">
+                            <li><a href="#">소메뉴2-1</a></li>
+                            <li><a href="#"></a>소메뉴2-2</a></li>
+                        </ul>
+                    </ul>
+                    <ul class="big_menu">
+                        <li> <button type="sidebar_info_right" class="bar_search">
+                            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbGiypo%2FbtshAqPR6aW%2FPN5baU1J4EvJYFzok8dTnk%2Fimg.png" width="38" height="38"style="margin-right: 20px;">
+                        </button> 검색 <i class="arrow fas fa-angle-right"></i></li>
+                        <ul class="small_menu">
+                            <li><a href="#">소메뉴2-1</a></li>
+                            <li><a href="#"></a>소메뉴2-2</a></li>
+                        </ul>
+                    </ul>
+                    <ul class="big_menu">
+                        <li> <button type="sidebar_info_right" class="bar_board">
+                            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fc3nCju%2FbtshHNbvewZ%2FLONYxTbMeXtE576hqU3nr0%2Fimg.png" width="38" height="38" style="margin-right: 20px;">
+                        </button> 게시판 <i class="arrow fas fa-angle-right"></i></li>
+                        <ul class="small_menu">
+                            <li><a href="#">소메뉴2-1</a></li>
+                            <li><a href="#"></a>소메뉴2-2</a></li>
+                        </ul>
+                    </ul>
+                    <ul class="big_menu">
+                        <li> <button type="sidebar_info_right" class="bar_rank">
+                            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FEuYYV%2FbtshAZYn8Tn%2FL066fB7lLPlrm6X9krFiI1%2Fimg.png" width="38" height="38" style="margin-right: 20px;">
+                        </button> 순위 <i class="arrow fas fa-angle-right"></i></li>
+                        <ul class="small_menu">
+                            <li><a href="#">소메뉴2-1</a></li>
+                            <li><a href="#"></a>소메뉴2-2</a></li>
+                        </ul>
+                    </ul>
+                    <ul class="big_menu">
+                        <li> <button type="sidebar_info_right" class="bar_setting">
+                            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FUaRhy%2FbtshAz6Tj9C%2F43Se536UK55i2GS0QP5NLk%2Fimg.png" width="38" height="38" style="margin-right: 20px;">
+                        </button> 설정 <i class="arrow fas fa-angle-right"></i></li>
+                        <ul class="small_menu">
+                            <li><a href="#">소메뉴2-1</a></li>
+                            <li><a href="#"></a>소메뉴2-2</a></li>
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    <div class="top_bar">
+        <button type="flavor_logo" class="flavor_logo">
+            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FNCkp7%2Fbtshz0iU8wZ%2FGdartd1kgTj0ZXMhJ0IKwk%2Fimg.png" width="415" height="140">
+        </button>
+        <!-- 검색창 -->
+        <div class="search">
+            <input type="text" class="search_box" id="randomFood">
+            <button type="search_icon" class="search_icon">
+                <img src="https://cdn.icon-icons.com/icons2/1302/PNG/512/magnifyingglassbrowser_85768.png" class="srh_btn" width="24px" height="24px">
+            </button>
+        </div>
+    </div>
+    <!-- 로그인  -->
+    <div class="top_right_bar">
+        <!-- 스위치 -->
+        <div class="switch" onclick="openPopup()">
+            <input type="checkbox" id="sw_btn">
+            <label for="sw_btn" class="switch_label">
+                <span class="onf_btn"></span>
+            </label>
+        </div>
+        <!-- 위치 수신 동의 팝업창 -->
+        <div class="popup-container" id="popupContainer">
+            <!-- 팝업창 내용 -->
+            <div class="popup">
+                <!-- <h2> 위치 수신 동의 </h2>
+                <p> 사용자 위치 정보를 수신하려면 동의해주세요. </p>
+                <button onclick="closePopup()"> 동의 </button> -->
+            </div>
+        </div>
+        <ul class="loginAndregister">
+            <li><a target="blank" href="_login_page.html" class="lar"> 로그인 </a></li>
+            <li><a target="blank" href="_sign_up_page.html"class="lar"> 회원가입 </a></li>
+        </ul>
+    </div>
+
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=0560729fbda53d06035a69b6f812c484"></script>
+    <script>
+      // Kakao Maps API 로드 완료 시 실행되는 함수
+        kakao.maps.load(function () {
+        // 현재 위치 받아오기
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var latitude = position.coords.latitude; // 위도
+            var longitude = position.coords.longitude; // 경도
+
+            // 지도 생성
+            var container = document.getElementById('map');
+            var options = {
+                center: new kakao.maps.LatLng(latitude, longitude),
+                level: 3
+            };
+            var map = new kakao.maps.Map(container, options);
+
+            // 지도에 마커 추가
+            var marker = new kakao.maps.Marker({
+            position: new kakao.maps.LatLng(latitude, longitude),
+            map: map
+            });
+            });
+        });
+    </script>
+</body>
+</html>
