@@ -164,15 +164,13 @@
 
       if (capsLockEnabled) {
         capsLockWarning.innerText = 'Caps Lock이 켜져있습니다.';
-        capsLockWarning.style.display = 'block'; // 오류 메시지를 화면에 표시
+        capsLockWarning.style.display = 'block';
       } else {
-        capsLockWarning.style.display = 'none'; // 오류 메시지를 화면에서 숨김
+        capsLockWarning.style.display = 'none';
       }
     }
 
-
     // 이벤트 리스너 등록
-    document.getElementById('login_id').addEventListener('keydown', blockHangulInput);
     document.getElementById('login_pw').addEventListener('keydown', checkCapsLock);
     document.getElementById('login_id').addEventListener('input', hideIdError);
     document.getElementById('login_pw').addEventListener('input', hidePasswordError);
