@@ -15,10 +15,11 @@
 
 .list_btn {
     position: absolute;
-    transform: translate(20%, -60%);
+    transform: translate(20%, -40%);
     color: #ffffff;
     background-color: #ff6480;
     border: none;
+    cursor: pointer;
 }
 
 .side-menu {
@@ -38,7 +39,7 @@
 .side_user {
     background-color: #ff6480;
     border: none;
-    margin: 40px 0px 30px 8px;
+    margin: 60px 0px 30px 8px;
     cursor: pointer;
 }
 
@@ -162,18 +163,6 @@
     text-decoration: none;
 }
 
-#sidebar-menu>ul>li a {
-    background-color: #ffffff;
-    font-size: 20px;
-    display: block;
-    margin: 0px 0px 0px 8px;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    width: 36px;
-    height: 10px;
-    cursor: pointer;
-}
-
 #sidebar-menu .fas {
     padding-left: 6px;
 }
@@ -216,14 +205,6 @@
     margin-right: 10px;
     font-family: 'NotoKrB';
     line-height: 35px;
-}
-
-.sub_menu .fas {
-    color: #ff5858;
-    font-size: 20px;
-    line-height: 20px;
-    float: right;
-    margin-right: 20px;
 }
 
 .sub_menu>.big_menu>.small_menu li {

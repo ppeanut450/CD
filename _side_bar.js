@@ -3,6 +3,9 @@ $(function () {
     $(".has_sub").click(function () {
         $(".left_sub_menu").fadeToggle(300);
     });
+    $(".list_btn").click(function() {
+        $(".left_sub_menu").fadeToggle(300);
+    });
     // 왼쪽메뉴 드롭다운
     $(".sub_menu ul.small_menu").hide();
     $(".sub_menu ul.big_menu").click(function () {
