@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.info label {
+    font-weight: bold;
+    width: 120px;
+}
+
+.info span {
+    margin-left: 10px;
+}
+
+.button-container {
+    text-align: center;
+}
+
+.button-container button {
+    margin: 10px;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button-container button.logout {
+    background-color: #ff6b6b;
+    color: #fff;
+}
+
+.button-container button.register {
+    background-color: #4dabf7;
+    color: #fff;
+}
