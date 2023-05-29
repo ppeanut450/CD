@@ -49,14 +49,14 @@
 #menu_wrap .option{
     position: relative;
     text-align: center;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 5px;
 }
 
 #menu_wrap .option p {
     margin:10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
 }  
 
 #menu_wrap .option button {
