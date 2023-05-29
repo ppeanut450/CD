@@ -303,6 +303,19 @@ function displayMarker(locPosition, message) {
 
 currentLocation();
 
+var iwContent = message, // 인포윈도우에 표시할 내용
+    iwRemoveable = true;
+
+// 인포윈도우를 생성합니다
+var infowindow = new kakao.maps.InfoWindow({
+    content : iwContent,
+    removable : iwRemoveable
+});
+
+// 인포윈도우를 마커위에 표시합니다
+infowindow.open(map, marker);
+
+
 </script>
 </body>
 </html>
