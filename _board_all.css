@@ -127,7 +127,7 @@ a {
     min-width: 80px;
     margin-left: 10px;
     padding: 10px;
-    border: 1px solid #000;
+    border: 1px solid #ff6480;
     border-radius: 2px;
     font-size: 1.4rem;
 }
@@ -137,7 +137,7 @@ a {
 }
 
 .bt_wrap a.on {
-    background: #000;
+    background: #ff6480;
     color: #fff;
 }
 
@@ -218,15 +218,19 @@ a {
     letter-spacing: -1px;
 }
 
+/* 페이지 숫자 */
 .board_page a.num {
     padding-top: 9px;
     font-size: 1.4rem;
 }
 
 .board_page a.num.on {
-    border-color: #000;
-    background: #000;
+    background: #ff6480;
     color: #fff;
+}
+
+.board_page a.num.on:hover {
+    background: #903a4a;
 }
 
 .board_page a:first-child {
