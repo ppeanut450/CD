@@ -56,12 +56,9 @@
 }  
 
 #menu_wrap .option button {
-    margin-left:5px;
-    /* position: absolute;
-    top: 2px;
-    right: 3px;
-    bottom: 2px; */
-    padding: 6px 8px;
+    /* 위 오 아 왼 */
+    margin: 2px, 3px, 2px, 5px;
+    /* padding: 6px 8px; */
     background-color: #ffa99a;
     color: #fff;
     border: none;
