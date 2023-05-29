@@ -16,7 +16,7 @@
     <!-- 사이드 바 -->
     <script type="text/javascript" src="_side_bar.js"></script>
     <!-- 검색창 늘어나는 거 -->
-    <!-- <script type="text/javascript" src="_search_increase.js"></script> -->
+    <script type="text/javascript" src="_search_increase.js"></script>
     <!-- 추천 검색창-->
     <script type="text/javascript" src="_suggested_search.js"></script>
 </head>
@@ -116,7 +116,7 @@
         <div class="search_part">
             <!-- 검색창 -->
             <div class="search">
-                <input type="text" class="search_box" id="randomFood" autocomplete="off" onclick="getclick()">
+                <input type="text" class="search_box" id="randomFood" autocomplete="off" onclick="expandSearchBox()">
                 <button type="search_icon" class="search_icon">
                     <img src="https://cdn.icon-icons.com/icons2/1302/PNG/512/magnifyingglassbrowser_85768.png" class="srh_btn" width="24px" height="24px">
                 </button>
@@ -154,30 +154,6 @@
         </ul>
     </div>
 
-    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=0560729fbda53d06035a69b6f812c484"></script>
-    <script>
-      // Kakao Maps API 로드 완료 시 실행되는 함수
-        kakao.maps.load(function () {
-        // 현재 위치 받아오기
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var latitude = position.coords.latitude; // 위도
-            var longitude = position.coords.longitude; // 경도
-
-            // 지도 생성
-            var container = document.getElementById('map');
-            var options = {
-                center: new kakao.maps.LatLng(latitude, longitude),
-                level: 3
-            };
-            var map = new kakao.maps.Map(container, options);
-
-            // 지도에 마커 추가
-            var marker = new kakao.maps.Marker({
-            position: new kakao.maps.LatLng(latitude, longitude),
-            map: map
-            });
-            });
-        });
-    </script>
+    
 </body>
 </html>

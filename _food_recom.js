@@ -5,6 +5,7 @@ function setRandomFood() {
     var inputField = document.getElementById("randomFood");
     inputField.setAttribute("placeholder", "오늘의 추천 메뉴는 " + foods[randomIndex] + "입니다!");
 }
+
 function openPopup() {
     window.open('popup.html', '팝업 제목', 'width=500, height=400');
 }

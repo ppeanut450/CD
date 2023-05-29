@@ -242,7 +242,7 @@ a {
 /* FLAVOR 로고와 검색창 한 묶음 */
 .top_bar {
     text-align: center;
-    transform: translateY(40%);
+    transform: translateY(50%);
 }
 
 /* 스위치, 로그인, 회원가입 한 묶음 */
@@ -339,16 +339,31 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* 검색창을 아래로 정렬 */
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .search_box {
+    position: relative;
     width: 450px;
     height: auto;
     border-radius: 20px;
     border: 1px solid #bbb;
     padding: 10px 12px;
     background-color: #ffffff;
+}
+
+.search_box.expand {
+    height: 200px;
+}
+
+.search_box.expand::placeholder {
+    position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .search_icon {
@@ -367,6 +382,30 @@ a {
 .suggested_search:hover {
     outline: none;
     border-color: #f9958c; /* 커서 닿으면 예쁘게 불빛 ~ */
+}
+
+.recent_search {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    padding: 10px;
+    display: none;
+}
+.recent_search ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.recent_search li {
+    cursor: pointer;
+    padding: 5px 0;
+}
+.recent_search li:hover {
+    background: #f1f1f1;
 }
 
 .suggested_items_show {
