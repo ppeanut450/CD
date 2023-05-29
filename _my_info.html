@@ -67,8 +67,12 @@
     
     // 로그아웃 함수
     function logout() {
-      // 로그아웃 처리하는 코드 작성
-      alert("로그아웃 되었습니다.");
+      // 로그아웃 확인 팝업
+      var confirmLogout = confirm("정말로 로그아웃 하시겠습니까?");
+      if (confirmLogout) {
+        // 로그아웃 처리
+        alert("로그아웃 되었습니다.");
+      }
     }
 
     // 회원탈퇴 함수
