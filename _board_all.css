@@ -224,13 +224,17 @@ a {
     font-size: 1.4rem;
 }
 
+.board_page a.num:hover {
+    background: #818181
+}
+
 .board_page a.num.on {
-    background: #4e4d4d;
-    color: #fff;
+    background: #e1e1e1;
+    color: #000000;
 }
 
 .board_page a.num.on:hover {
-    background: #262626;
+    background: #818181;
 }
 
 .board_page a:first-child {
