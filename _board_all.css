@@ -225,12 +225,12 @@ a {
 }
 
 .board_page a.num.on {
-    background: #ff6480;
+    background: #4e4d4d;
     color: #fff;
 }
 
 .board_page a.num.on:hover {
-    background: #903a4a;
+    background: #262626;
 }
 
 .board_page a:first-child {
