@@ -56,6 +56,16 @@
 
 #menu_wrap .option button {
     margin-left:5px;
+    position: absolute;
+    top: 2px;
+    right: 3px;
+    bottom: 2px;
+    padding: 6px 8px;
+    background-color: #ffa99a;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
 #placesList li {
