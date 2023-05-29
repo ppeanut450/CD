@@ -218,6 +218,10 @@ a {
     letter-spacing: -1px;
 }
 
+.board_page a.bt:hover {
+    background: #b2b2b2;
+}
+
 /* 페이지 숫자 */
 .board_page a.num {
     padding-top: 9px;
@@ -225,7 +229,7 @@ a {
 }
 
 .board_page a.num:hover {
-    background: #818181
+    background: #b2b2b2;
 }
 
 .board_page a.num.on {
@@ -234,7 +238,7 @@ a {
 }
 
 .board_page a.num.on:hover {
-    background: #818181;
+    background: #b2b2b2;
 }
 
 .board_page a:first-child {
