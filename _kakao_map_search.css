@@ -66,6 +66,10 @@
     cursor: pointer;
 }
 
+#menu_wrap .option button:hover {
+    background-color: #c28175;
+}
+
 #placesList li {
     list-style: none;
 }
