@@ -4,16 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> 메인화면 </title>
+    <title> 메인 화면 </title>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="_main_page.css">
     <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <!-- 오늘의 추천 메뉴는 @@입니다! -->
     <script type="text/javascript" src="_food_recom.js"></script>
     <!-- 사이드 바 -->
     <script type="text/javascript" src="_side_bar.js"></script>
+    <!-- 검색창 늘어나는 거 -->
+    <!-- <script type="text/javascript" src="_search_increase.js"></script> -->
+    <!-- 추천 검색창-->
+    <script type="text/javascript" src="_suggested_search.js"></script>
 </head>
 <body onload="setRandomFood()">
     <!-- 바로가기 목록 버튼 -->
@@ -28,18 +33,21 @@
                                 <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fmhy5u%2Fbtshz0pWsKA%2F5ldl8mMklDrlnNEQdKBKBk%2Fimg.png" width="38" height="38">
                             </button>
                         </a>
-                        <button type="sidebar_info_left" class="side_user">
-                            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FBBqgT%2FbtshCgk8Iud%2FgPM9jKKbs3miEzQpzrOAK1%2Fimg.png" width="38" height="38">
-                        </button>
-                        <button type="sidebar_info_left" class="side_alarm">
-                            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fcw22RG%2FbtshHM4JcSa%2F6rsobR2CdVvhyjoKLLtwY0%2Fimg.png" width="36" height="36">
-                        </button>
-                        <button type="sidebar_info_left" class="side_search">
-                            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FkFoMC%2FbtshAqoLA2f%2FLQ3iZLKAgRvbFUmQ9bzTrk%2Fimg.png" width="38" height="38">
-                        </button>
-                        <button type="sidebar_info_left" class="side_board">
-                            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb1dZ9c%2FbtshA0wcGtI%2FwtE7koc7WRiCLQvSUEoAc0%2Fimg.png" width="38" height="38">
-                        </button>
+                        <a href="_my_info_page.html">
+                            <button type="sidebar_info_left" class="side_user">
+                                <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FBBqgT%2FbtshCgk8Iud%2FgPM9jKKbs3miEzQpzrOAK1%2Fimg.png" width="38" height="38">
+                            </button>
+                        </a>
+                        <a href="_kakao_map_search.html">
+                            <button type="sidebar_info_left" class="side_search">
+                                <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FkFoMC%2FbtshAqoLA2f%2FLQ3iZLKAgRvbFUmQ9bzTrk%2Fimg.png" width="38" height="38">
+                            </button>
+                        </a>
+                        <a href="_board_all.html">
+                            <button type="sidebar_info_left" class="side_board">
+                                <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb1dZ9c%2FbtshA0wcGtI%2FwtE7koc7WRiCLQvSUEoAc0%2Fimg.png" width="38" height="38">
+                            </button>
+                        </a>
                         <button type="sidebar_info_left" class="side_rank">
                             <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdbUFey%2FbtshRydJ8j3%2FSXxTA9Utn0WubN1dZTE1F0%2Fimg.png" width="38" height="38">
                         </button>
@@ -58,72 +66,70 @@
                             <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcfAkVr%2FbtshKRx4lhW%2FNMhl5ydIsx24ftvl7uBSMk%2Fimg.png" width="38" height="38" style="margin-right: 20px;">
                         </button> 내 정보 </li> <i class="arrow fas fa-angle-right"></i></li>
                         <ul class="small_menu">
-                            <li><a href="#">소메뉴1-1</a></li>
-                            <li><a href="#">소메뉴1-2</a></li>
-                            <li><a href="">소메뉴1-3</a></li>
-                            <li><a href="#">소메뉴1-4</a></li>
-                        </ul>
-                    </ul>
-                    <ul class="big_menu">
-                        <li> <button type="sidebar_info_right" class="bar_alarm">
-                            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FlDe9P%2FbtshAwISWXR%2FQJphyK35oqn6rXtHNI54hK%2Fimg.png" width="38" height="38" style="margin-right: 20px;">
-                        </button> 알림 <i class="arrow fas fa-angle-right"></i></li>
-                        <ul class="small_menu">
-                            <li><a href="#">소메뉴2-1</a></li>
-                            <li><a href="#"></a>소메뉴2-2</a></li>
+                            <li><a href="#"> 프로필 </a></li>
+                            <li><a href="#"> 찜한 목록 </a></li>
+                            <li><a href="#"> 내 후기 글 </a></li>
                         </ul>
                     </ul>
                     <ul class="big_menu">
                         <li> <button type="sidebar_info_right" class="bar_search">
                             <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbGiypo%2FbtshAqPR6aW%2FPN5baU1J4EvJYFzok8dTnk%2Fimg.png" width="38" height="38"style="margin-right: 20px;">
                         </button> 검색 <i class="arrow fas fa-angle-right"></i></li>
-                        <ul class="small_menu">
-                            <li><a href="#">소메뉴2-1</a></li>
-                            <li><a href="#"></a>소메뉴2-2</a></li>
+                        <a href="_kakao_map_search.html">
+                            <ul class="small_menu">
+                            <li><a href="#"> 전체 </a></li>
+                            <li><a href="#"> 지역별 </a></li>
+                            <li><a href="#"> 음식 종류별 </a></li>
+                            <li><a href="#"> 키워드별 </a></li>
                         </ul>
+                        </a>
                     </ul>
                     <ul class="big_menu">
                         <li> <button type="sidebar_info_right" class="bar_board">
                             <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fc3nCju%2FbtshHNbvewZ%2FLONYxTbMeXtE576hqU3nr0%2Fimg.png" width="38" height="38" style="margin-right: 20px;">
                         </button> 게시판 <i class="arrow fas fa-angle-right"></i></li>
                         <ul class="small_menu">
-                            <li><a href="#">소메뉴2-1</a></li>
-                            <li><a href="#"></a>소메뉴2-2</a></li>
+                            <li><a href="#"> 전체 </a></li>
+                            <li><a href="#"> 건의사항 </a></li>
+                            <li><a href="#"> 후기 게시판 </a></li>
                         </ul>
                     </ul>
                     <ul class="big_menu">
                         <li> <button type="sidebar_info_right" class="bar_rank">
                             <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FEuYYV%2FbtshAZYn8Tn%2FL066fB7lLPlrm6X9krFiI1%2Fimg.png" width="38" height="38" style="margin-right: 20px;">
                         </button> 순위 <i class="arrow fas fa-angle-right"></i></li>
-                        <ul class="small_menu">
-                            <li><a href="#">소메뉴2-1</a></li>
-                            <li><a href="#"></a>소메뉴2-2</a></li>
-                        </ul>
                     </ul>
                     <ul class="big_menu">
                         <li> <button type="sidebar_info_right" class="bar_setting">
                             <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FUaRhy%2FbtshAz6Tj9C%2F43Se536UK55i2GS0QP5NLk%2Fimg.png" width="38" height="38" style="margin-right: 20px;">
                         </button> 설정 <i class="arrow fas fa-angle-right"></i></li>
-                        <ul class="small_menu">
-                            <li><a href="#">소메뉴2-1</a></li>
-                            <li><a href="#"></a>소메뉴2-2</a></li>
-                        </ul>
                     </ul>
                 </div>
             </div>
         </div>
     <div class="top_bar">
+        <!-- 로고 -->
         <button type="flavor_logo" class="flavor_logo">
             <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FNCkp7%2Fbtshz0iU8wZ%2FGdartd1kgTj0ZXMhJ0IKwk%2Fimg.png" width="415" height="140">
         </button>
-        <!-- 검색창 -->
-        <div class="search">
-            <input type="text" class="search_box" id="randomFood">
-            <button type="search_icon" class="search_icon">
-                <img src="https://cdn.icon-icons.com/icons2/1302/PNG/512/magnifyingglassbrowser_85768.png" class="srh_btn" width="24px" height="24px">
-            </button>
+        <!-- 검색 부분 묶음 -->
+        <div class="search_part">
+            <!-- 검색창 -->
+            <div class="search">
+                <input type="text" class="search_box" id="randomFood" autocomplete="off" onclick="getclick()">
+                <button type="search_icon" class="search_icon">
+                    <img src="https://cdn.icon-icons.com/icons2/1302/PNG/512/magnifyingglassbrowser_85768.png" class="srh_btn" width="24px" height="24px">
+                </button>
+            </div>
+            <!-- 추천 검색어 -->
+            <div class="search_list">
+                <div class="suggested_search" id="suggested_search"></div>
+                <!-- 최신 검색어 -->
+                <div class="latest_search"></div>
+            </div>
         </div>
     </div>
+        
     <!-- 로그인  -->
     <div class="top_right_bar">
         <!-- 스위치 -->
