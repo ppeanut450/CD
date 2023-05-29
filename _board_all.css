@@ -128,7 +128,7 @@ a {
     margin-left: 10px;
     padding: 10px;
     border: 1px solid #ff6480;
-    border-radius: 2px;
+    border-radius: 5px;
     font-size: 1.4rem;
 }
 
@@ -139,6 +139,10 @@ a {
 .bt_wrap a.on {
     background: #ff6480;
     color: #fff;
+}
+
+.bt_wrap a.on:hover {
+    background: #c24e63;
 }
 
 .board_list {
