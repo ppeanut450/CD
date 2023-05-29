@@ -3,48 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>내 정보</title>
-</head>
-<body>
-  <h1>내 정보</h1>
-  
-  <div class="info">
-    <label for="name">이름:</label>
-    <span id="name"></span>
-  </div>
-  
-  <div class="info">
-    <label for="username">아이디:</label>
-    <span id="username"></span>
-  </div>
-  
-  <div class="info">
-    <label for="password">비밀번호:</label>
-    <span id="password"></span>
-  </div>
-  
-  <div class="info">
-    <label for="birthdate">생년월일:</label>
-    <span id="birthdate"></span>
-  </div>
-  
-  <div class="info">
-    <label for="email">이메일:</label>
-    <span id="email"></span>
-  </div>
-  
-  <div class="info">
-    <label for="phone">전화번호:</label>
-    <span id="phone"></span>
-  </div>
-  
-  <div class="button-container">
-    <button class="logout">로그아웃</button>
-    <button class="register">회원가입</button>
-  </div>
-  
+  <link rel="stylesheet" href="_my_info.css">
   <script>
-    // 사용자 정보 설정
-    var user = {
+    // 예시 사용자 정보
+    var userInfo = {
       name: "홍길동",
       username: "hong123",
       password: "********",
@@ -53,25 +15,60 @@
       phone: "010-1234-5678"
     };
     
-    // 정보 출력
-    document.getElementById('name').textContent = user.name;
-    document.getElementById('username').textContent = user.username;
-    document.getElementById('password').textContent = user.password;
-    document.getElementById('birthdate').textContent = user.birthdate;
-    document.getElementById('email').textContent = user.email;
-    document.getElementById('phone').textContent = user.phone;
+    // 사용자 정보 업데이트 함수
+    function updateUserInfo() {
+      document.getElementById("name").textContent = userInfo.name;
+      document.getElementById("username").textContent = userInfo.username;
+      document.getElementById("password").textContent = userInfo.password;
+      document.getElementById("birthdate").textContent = userInfo.birthdate;
+      document.getElementById("email").textContent = userInfo.email;
+      document.getElementById("phone").textContent = userInfo.phone;
+    }
     
-    // 로그아웃 버튼 클릭 시 동작
-    document.querySelector('.logout').addEventListener('click', function() {
-      // 여기에 로그아웃 동작을 추가합니다.
-      alert('로그아웃 되었습니다!');
-    });
-    
-    // 회원가입 버튼 클릭 시 동작
-    document.querySelector('.register').addEventListener('click', function() {
-      // 여기에 회원가입 동작을 추가합니다.
-      alert('회원가입 페이지로 이동합니다!');
-    });
+    // 로그아웃 함수
+    function logout() {
+      // 로그아웃 처리하는 코드 작성
+      alert("로그아웃 되었습니다.");
+    }
   </script>
+</head>
+<body onload="updateUserInfo()">
+  <h1>내 정보</h1>
+  
+  <table>
+    <tr>
+      <th>항목</th>
+      <th>내용</th>
+    </tr>
+    <tr>
+      <td>이름</td>
+      <td id="name" class="blur"></td>
+    </tr>
+    <tr>
+      <td>아이디</td>
+      <td id="username" class="blur"></td>
+    </tr>
+    <tr>
+      <td>비밀번호</td>
+      <td id="password" class="blur"></td>
+    </tr>
+    <tr>
+      <td>생년월일</td>
+      <td id="birthdate" class="blur"></td>
+    </tr>
+    <tr>
+      <td>이메일</td>
+      <td id="email" class="blur"></td>
+    </tr>
+    <tr>
+      <td>전화번호</td>
+      <td id="phone" class="blur"></td>
+    </tr>
+  </table>
+  
+  <div class="button-container">
+    <button class="logout" onclick="logout()">로그아웃</button>
+    <button class="register">회원탈퇴</button>
+  </div>
 </body>
 </html>
