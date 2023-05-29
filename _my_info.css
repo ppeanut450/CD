@@ -8,7 +8,8 @@ body {
     margin-bottom: 20px;
   }
   table {
-    width: 100%;
+    margin-left: 5%;
+    width: 90%;
     border-collapse: collapse;
   }
   th, td {
@@ -17,10 +18,6 @@ body {
   }
   th {
     background-color: #f2f2f2;
-  }
-  td.blur {
-    color: transparent;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   }
   .button-container {
     text-align: center;
@@ -38,7 +35,7 @@ body {
     background-color: #ff6b6b;
     color: #fff;
   }
-  .button-container button.register {
+  .button-container button.withdraw {
     background-color: #4dabf7;
     color: #fff;
   }
