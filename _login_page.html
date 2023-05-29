@@ -164,11 +164,12 @@
 
       if (capsLockEnabled) {
         capsLockWarning.innerText = 'Caps Lock이 켜져있습니다.';
-        capsLockWarning.style.display = 'block';
+        capsLockWarning.style.display = 'block'; // 오류 메시지를 화면에 표시
       } else {
-        capsLockWarning.style.display = 'none';
+        capsLockWarning.style.display = 'none'; // 오류 메시지를 화면에서 숨김
       }
     }
+
 
     // 이벤트 리스너 등록
     document.getElementById('login_id').addEventListener('keydown', blockHangulInput);
