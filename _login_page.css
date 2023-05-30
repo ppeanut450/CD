@@ -24,6 +24,7 @@ body {
   height: 600px;
   width: 360px;
   border-radius: 5px;
+  box-shadow: 0px 0px 24px #ffaebd;
 }
 
 /* 마우스 커서 인식하는 것 */
@@ -44,9 +45,17 @@ body {
   clip-path: inset(0 0 0 0);
 }
 
+.flavor_logo {
+  background-color: #ffffff;
+  border: none;
+  cursor: pointer;
+  margin-top: 30px;
+  margin-left: 26px;
+}
+
 .login {
   width: 360px; /* 아이디 비밀번호 언더바 길이 */
-  padding: 120px 42px 4px 42px; /* 여백 간격 */
+  padding: 10px 42px 4px 42px; /* 여백 간격 */
 }
 
 .login__field {
@@ -61,6 +70,7 @@ body {
   padding: 12px;
   font-weight: 700;
   width: 100%;
+  text-align: left;
 }
 
 .login__input:active,
@@ -74,7 +84,8 @@ body {
     display: inline-block; /* 영역 적용 가능해짐 */
     width: 20px; 
     height: 20px;
-    border: 2px solid #7f7f7f;
+    border-radius: 10px;
+    border: 2px solid #9d9d9d;
     box-sizing: border-box;
     position: relative; 
     top: 4px;
@@ -86,8 +97,7 @@ body {
 .chk__btn:after{
     content: 'v'; /* 체크박스 특수문자 */
     margin: 8px 0px 0px 1.2px;
-    font-size: 20px; color: #ffffff;
-    background-color: #ffd9c6;
+    font-size: 20px; color: #000000;
     background-size: cover;
     position: absolute; 
     top: -14px; 
@@ -139,11 +149,14 @@ body {
   padding-left: 84px;
 }
 
-.find_idpw,
+.find_idpw {
+  margin-left: 13.9px;
+  margin-right: 10px;
+  color: #868686;
+}
+
 .sign_up {
-  margin: 6px;
-  color: #ffffff;
-  background-color: #ffa99a;
+  color: #868686;
 }
 
 .social-login {
@@ -158,8 +171,19 @@ body {
   padding-top: 20px;
 }
 
-.naver_icon {
-  margin-right: 12px;
+.naver_icon, 
+.kakao_icon, 
+.google_icon {
+  margin-right: 15px;
+  background-color: #ffffff;
+  border-color: #ffffff;
+  cursor: pointer;
+  border: none;
+  box-shadow: none;
+}
+
+.facebook_icon {
+  margin-right: 9.5px;
   background-color: #ffffff;
   border-color: #ffffff;
   cursor: pointer;
@@ -168,59 +192,16 @@ body {
 }
 
 .naver_icon:active,
-.naver_icon:focus {
-  border: none;
-  box-shadow: none;
-}
-
-.kakao_icon {
-  margin-right: 12px;
-  color: #ffffff;
-  background-color: #ffffff;
-  border-color: #ffffff;
-  cursor: pointer;
-  border: none;
-  box-shadow: none;
-}
-
+.naver_icon:focus,
 .kakao_icon:active,
-.kakao_icon:focus {
-  border: none;
-  box-shadow: none;
-}
-
-.facebook_icon {
-  margin-right: 12px;
-  color: #ffffff;
-  background-color: #ffffff;
-  border-color: #ffffff;
-  cursor: pointer;
-  border: none;
-  box-shadow: none;
-}
-
+.kakao_icon:focus,
 .facebook_icon:active,
-.facebook_icon:focus {
-  border: none;
-  box-shadow: none;
-}
-
-.google_icon {
-  margin-right: 12px;
-  color: #ffffff;
-  background-color: #ffffff;
-  border-color: #ffffff;
-  cursor: pointer;
-  border: none;
-  box-shadow: none;
-}
-
+.facebook_icon:focus,
 .google_icon:active,
 .google_icon:focus {
   border: none;
   box-shadow: none;
 }
-
 
 .error_message {
   display: none;
@@ -228,28 +209,4 @@ body {
   margin-top: -13px;
   margin-left: 5px;
   font-size: 12px;
-}
-
-/* .login_error_wrap {
-  position:relative;
-  min-height:34px;
-  margin:24px 0 -22px;
-  padding-right:40px
-} */
-
-.login_error_wrap::before {
-  content: '';
-  display: inline-block;
-  width: 0;
-  height: 34px;
-  line-height: 34px;
-  vertical-align: middle
-}
-
-.login_error_wrap.global {
-  padding-right: 0;
-}
-
-.login_error_wrap.global::before {
-  display:none;
 }

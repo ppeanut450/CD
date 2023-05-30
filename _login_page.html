@@ -2,14 +2,21 @@
 <html lang="ko">
 <head>
   <title> 로그인 </title>
-  <meta charset="utf-8"> <!-- 문자 깨짐 현상 방지를 위한 인코딩 선언 -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"> <!-- 브라우저 호환성-->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
   <link rel="stylesheet" href="_login_page.css">
 </head>
 <body>
   <div class="container">
     <div class="screen">
       <div class="screen__content">
+        <!-- 상단 로고 -->
+        <a href="_main_page.html">
+          <button type="flavor_logo" class="flavor_logo">
+            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FNCkp7%2Fbtshz0iU8wZ%2FGdartd1kgTj0ZXMhJ0IKwk%2Fimg.png" width="300" height="105">
+          </button>
+        </a>
+        
         <!-- 로그인 창 (아이디, 비밀번호, 로그인 유지 체크박스, 로그인 버튼) -->
         <form class="login">
           <!-- 아이디 -->
@@ -168,12 +175,63 @@
       }
     }
 
+    function postLoginForm() {
+    // 로그인 폼 요소 가져오기
+    const form = document.getElementById('login_form');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+
+    // 로그인 폼 데이터 가져오기
+    const username = usernameInput.value;
+    const password = passwordInput.value;
+
+    // AJAX 요청 생성
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '_your_server_endpoint_url_', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    // 요청 완료 후 실행될 콜백 함수
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        // 요청이 성공한 경우
+        console.log('로그인 폼 데이터 전송 성공!');
+        console.log(xhr.responseText); // 서버로부터 받은 응답 출력
+      } else {
+        // 요청이 실패한 경우
+        console.error('로그인 폼 데이터 전송 실패!');
+      }
+    };
+
+    // 요청 본문 데이터 생성
+    const formData = JSON.stringify({ username: username, password: password });
+
+    // AJAX 요청 전송
+    xhr.send(formData);
+  }
+
     // 이벤트 리스너 등록
     document.getElementById('login_pw').addEventListener('keydown', checkCapsLock);
     document.getElementById('login_id').addEventListener('input', hideIdError);
     document.getElementById('login_pw').addEventListener('input', hidePasswordError);
     document.querySelector('.login__submit').addEventListener('click', validateForm);
     
+    // function post_to_url(path, params, method='post') {
+    //   const form=document.createElement('form');
+    //   form.method=method;
+    //   form.action=action;
+
+    //   for(const key in params) {
+    //     if(params.hasOwnProperty(key)) {
+    //       const hiddenField=document.createElement('input');
+    //       hiddenField.type='hidden';
+    //       hiddenField.name=key;
+    //       hiddenField.value=params[key];
+    //       form.appendChild(hiddenField);
+    //     }
+    //   }
+    //   document.body.appendChild(form);
+    //   form.submit();
+    // }
   </script>
 </body>
 </html>
