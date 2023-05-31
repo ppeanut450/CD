@@ -21,17 +21,12 @@ body {
   font-size: 14px;
   height: 600px;
   width: 360px;
-  margin: 0 auto;
   padding: 20px;
   background-color: #fff; /* 박스 색 */
   border: 1px solid #ccc; /* 박스 테두리 색 */
   border-radius: 5px;
   border: none;
   box-shadow: 0px 0px 24px #ffaebd; /* 박스 그림자 */
-}
-
-.member b {
-  font-weight: bold;
 }
 
 /* 각 필드 사이 간격 */
@@ -42,17 +37,12 @@ body {
 .field_birth,
 .field_email,
 .field_number {
-  margin-top: 4px;
-  margin-bottom: 14px;
+  /* margin-top: 2px; */
+  margin-bottom: 15px;
 }
 
 .field_id {
   position: relative;
-}
-
-.field_id input {
-  width: 100%;
-  padding: 5px;
 }
 
 .field_id button {
@@ -75,9 +65,9 @@ body {
 .error_message {
   display: none;
   color: red;
-  margin-top: -13px;
+  margin-top: -14px;
   margin-left: 5px;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .field_birth {
@@ -91,7 +81,7 @@ body {
 }
 
 select {
-  margin-right: 15px;
+  margin-right: 20px;
 }
 
 

@@ -230,7 +230,6 @@
 
         
         document.getElementById('idck_btn').addEventListener('click', function() {
-            // event.preventDefault(); // 폼 전송 막기
             var userId = document.getElementById('user_id').value;
         
             // 아이디 중복 확인 로직을 수행합니다.
@@ -360,90 +359,93 @@
             document.getElementById('su_pwck_error').style.display = 'none';
         });
 
-        // 필드가 비어있는지 확인하는 함수
-        function isEmpty(fieldValue) {
-            return fieldValue.trim() === "";
-        }
+        // 가입 버튼 클릭 시 이벤트 처리
+        document.getElementById("signup_btn").addEventListener("click", function(event) {
+            event.preventDefault(); // 폼 전송 막기
 
-        // 특정 필드에 오류 메시지를 표시하는 함수
-        function displayError(fieldId, errorMessage) {
-            document.getElementById(fieldId).textContent = errorMessage;
-        }
-
-        // 제출 전에 폼을 유효성 검사하는 함수
-        function validateForm() {
-            // 오류 메시지 초기화
-            document.getElementById("su_name_error").textContent = "";
-            document.getElementById("su_id_error").textContent = "";
-            document.getElementById("su_pw_error").textContent = "";
-            document.getElementById("su_pwck_error").textContent = "";
-            document.getElementById("su_birth_error").textContent = "";
-            document.getElementById("su_email_error").textContent = "";
-            document.getElementById("su_number_error").textContent = "";
-
-            // 폼 값 가져오기
             var userName = document.getElementById("user_name").value;
             var userId = document.getElementById("user_id").value;
             var userPw = document.getElementById("user_pw").value;
             var userPwck = document.getElementById("user_pwck").value;
-            var userBirthYear = document.getElementById("user_birth_year").value;
-            var userBirthMonth = document.getElementById("user_birth_month").value;
-            var userBirthDay = document.getElementById("user_birth_day").value;
             var userEmail = document.getElementById("user_email").value;
-            var userNumber = document.getElementById("user_number").value;
+            var userPhone = document.getElementById("user_phone").value;
 
-            // 각 필드 유효성 검사
+            // 필수 입력 항목 확인
             var isValid = true;
 
-            if (isEmpty(userName)) {
-                displayError("su_name_error", "이름을 입력해주세요.");
+            if (userName === "") {
+                document.getElementById("su_name_error").textContent = "이름을 입력해주세요.";
+                document.getElementById("su_name_error").style.display = "block";
                 isValid = false;
+            } else {
+                document.getElementById("su_name_error").textContent = "";
+                document.getElementById("su_name_error").style.display = "none";
             }
 
-            if (isEmpty(userId)) {
-                displayError("su_id_error", "아이디를 입력해주세요.");
+            if (userId === "") {
+                document.getElementById("su_id_error").textContent = "아이디를 입력해주세요.";
+                document.getElementById("su_id_error").style.display = "block";
                 isValid = false;
+            } else {
+                document.getElementById("su_id_error").textContent = "";
+                document.getElementById("su_id_error").style.display = "none";
             }
 
-            if (isEmpty(userPw)) {
-                displayError("su_pw_error", "비밀번호를 입력해주세요.");
+            if (userPw === "") {
+                document.getElementById("su_pw_error").textContent = "비밀번호를 입력해주세요.";
+                document.getElementById("su_pw_error").style.display = "block";
                 isValid = false;
+            } else {
+                document.getElementById("su_pw_error").textContent = "";
+                document.getElementById("su_pw_error").style.display = "none";
             }
 
-            if (isEmpty(userPwck)) {
-                displayError("su_pwck_error", "비밀번호 확인을 입력해주세요.");
+            if (userPwck === "") {
+                document.getElementById("su_pwck_error").textContent = "비밀번호 확인을 입력해주세요.";
+                document.getElementById("su_pwck_error").style.display = "block";
                 isValid = false;
+            } else {
+                document.getElementById("su_pwck_error").textContent = "";
+                document.getElementById("su_pwck_error").style.display = "none";
             }
 
-            if (userPw !== userPwck) {
-                displayError("su_pwck_error", "비밀번호가 일치하지 않습니다.");
+            if (userEmail === "") {
+                document.getElementById("su_email_error").textContent = "이메일을 입력해주세요.";
+                document.getElementById("su_email_error").style.display = "block";
                 isValid = false;
+            } else {
+                document.getElementById("su_email_error").textContent = "";
+                document.getElementById("su_email_error").style.display = "none";
             }
 
-            if (isEmpty(userBirthYear) || isEmpty(userBirthMonth) || isEmpty(userBirthDay)) {
-                displayError("su_birth_error", "생년월일을 선택해주세요.");
+            if (userPhone === "") {
+                document.getElementById("su_phone_error").textContent = "전화번호를 입력해주세요.";
+                document.getElementById("su_phone_error").style.display = "block";
                 isValid = false;
+            } else {
+                document.getElementById("su_phone_error").textContent = "";
+                document.getElementById("su_phone_error").style.display = "none";
             }
 
-            if (isEmpty(userEmail)) {
-                displayError("su_email_error", "이메일을 입력해주세요.");
-                isValid = false;
-            }
-
-            if (isEmpty(userNumber)) {
-                displayError("su_number_error", "전화번호를 입력해주세요.");
-                isValid = false;
-            }
-
-            return isValid;
-        }
-
-        // 회원가입 버튼에 이벤트 리스너 추가
-        document.getElementById("signup_button").addEventListener("click", function(event) {
-            if (!validateForm()) {
-                event.preventDefault(); // 오류가 있는 경우 폼 제출 방지
+            if (isValid) {
+                // 가입 처리 함수 호출 (임시로 signUp 함수 호출)
+                signUp(userName, userId, userPw, userEmail, userPhone);
+                alert("가입 완료");
             }
         });
+
+        // 회원 가입 처리 함수
+        function signUp(userName, userId, userPw, userEmail, userPhone) {
+            // 회원 가입 로직 작성
+
+            // 회원 가입 성공 시 결과 출력
+            var isSuccess = true;
+            if (isSuccess) {
+                alert("회원 가입이 완료되었습니다.");
+            } else {
+                alert("회원 가입에 실패했습니다. 다시 시도해주세요.");
+            }
+        }
 
     </script>
 </body>
