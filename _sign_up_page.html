@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="_sign_up_page.css">
 </head>
 <body>
-    <form action="_sign_up_page.jsp" method="post">
+    <!-- <form action="_sign_up_page.jsp" method="post"> -->
         <!-- 회원가입 항목 -->
         <div class="member">
             <!-- 이름 -->
@@ -20,7 +20,7 @@
             <b>아이디 *</b> 
             <div class="field_id">
                 <input type="text" id="user_id" 
-                    placeholder="아이디 입력 (6~20자)" minlength="6" maxlength="20">
+                    placeholder="아이디 입력 (6~20자)">
                 <button id="idck_btn">중복 확인</button>
             </div>
             <span class="error_message" id="su_id_error"></span>
@@ -28,18 +28,18 @@
             <b>비밀번호 *</b> 
             <div class="field_password">
                 <input class="userpw" type="password" id="user_pw" 
-                    placeholder="비밀번호 입력 (숫자, 특수문자 포함 8~20자)" minlength="8" maxlength="20">
+                    placeholder="비밀번호 입력 (숫자, 특수문자 포함 8~20자)">
             </div>
             <span class="error_message" id="su_pw_error"></span>
-            <span class="error_message" id="caps_lock_warning"></span>
+            <span class="error_message" id="caps_lock_warning1"></span>
 
             <b>비밀번호 확인 *</b>
             <div class="field_password_check">
                 <input class="userpwck" type="password" id="user_pwck"
-                    placeholder="비밀번호 재입력" minlength="8" maxlength="20">
+                    placeholder="비밀번호 재입력">
             </div>
             <span class="error_message" id="su_pwck_error"></span>
-            <span class="error_message" id="caps_lock_warning"></span>
+            <span class="error_message" id="caps_lock_warning2"></span>
 
             <!-- 생년월일 -->
             <b>생년월일</b>
@@ -224,33 +224,227 @@
             <!-- 가입 취소 버튼 -->
             <input type="button" id="signup_cancel_button" value="취소"> </input>
         </div>
-    </form>
+    <!-- </form> -->
 
     <script>
+
+        
         document.getElementById('idck_btn').addEventListener('click', function() {
-        var userId = document.getElementById('user_id').value;
+            // event.preventDefault(); // 폼 전송 막기
+            var userId = document.getElementById('user_id').value;
         
-        // 아이디 중복 확인 로직을 수행합니다.
-        var isIdExist = idckExist(userId); // 중복 확인 함수를 호출합니다.
-        
-        if (isIdExist) {
-            document.getElementById('su_id_error').innerText = '이미 사용 중인 아이디입니다.';
-            document.getElementById('su_id_error').style.display = 'block'; // 오류 메시지를 표시합니다.
-        } else {
-            document.getElementById('su_id_error').style.display = 'none'; // 오류 메시지를 숨깁니다.
-        }
+            // 아이디 중복 확인 로직을 수행합니다.
+            var isIdExist = idckExist(userId); // 중복 확인 함수를 호출합니다.
+            
+            // 아이디 길이 확인
+            if (userId.length >= 6 && userId.length <= 20) {
+                // 중복 확인 로직 수행
+                if (isIdExist) {
+                    // 중복된 아이디인 경우 오류 메시지 표시
+                    document.getElementById('su_id_error').innerText = '이미 사용 중인 아이디입니다.';
+                    document.getElementById('su_id_error').style.color = 'red';
+                    document.getElementById('su_id_error').style.display = 'block';
+                } else {
+                    // 중복되지 않은 아이디인 경우 오류 메시지 숨김
+                    document.getElementById('su_id_error').innerText = '사용 가능한 아이디입니다.';
+                    document.getElementById('su_id_error').style.color = 'green';
+                    document.getElementById('su_id_error').style.display = 'block';
+                }
+            } else {
+                // 아이디 길이 오류 메시지 표시
+                document.getElementById('su_id_error').innerText = '6~20자의 영문 소문자와 숫자만 사용 가능합니다.';
+                document.getElementById('su_id_error').style.color = 'red';
+                document.getElementById('su_id_error').style.display = 'block';
+            }
         });
 
         function idckExist(userId) {
-        // 중복 확인을 수행하는 로직을 구현합니다.
-        // 여기에서는 임의로 예시로 중복 여부를 체크하도록 구현하였습니다.
-        var existingUserIds = ['user1', 'user2', 'user3']; // 기존에 존재하는 아이디 목록
-        return existingUserIds.includes(userId); // 아이디가 기존 목록에 포함되어 있는지 확인하고 결과를 반환합니다.
+            // 중복 확인을 수행하는 로직을 구현합니다.
+            // 여기에서는 임의로 예시로 중복 여부를 체크하도록 구현하였습니다.
+            var existingUserIds = ['user01', 'user02', 'user03']; // 기존에 존재하는 아이디 목록
+            return existingUserIds.includes(userId); // 아이디가 기존 목록에 포함되어 있는지 확인하고 결과를 반환합니다.
         }
 
-        document.getElementById('signup_cancel_button').addEventListener('click', function() {
-        history.go(-1); // 전 화면으로 돌아가는 동작
+        // 비밀번호 입력 시 Caps Lock이 켜져 있는 경우
+        function checkCapsLock1(event) {
+            const capsLockWarning = document.getElementById('caps_lock_warning1');
+
+            const capsLockEnabled = event.getModifierState && event.getModifierState('CapsLock');
+
+            if (capsLockEnabled) {
+                capsLockWarning.innerText = 'Caps Lock이 켜져있습니다.';
+                capsLockWarning.style.display = 'block';
+            } else {
+                capsLockWarning.style.display = 'none';
+            }
+        }
+
+        // 비밀번호 확인 입력 시 Caps Lock이 켜져 있는 경우
+        function checkCapsLock2(event) {
+            const capsLockWarning = document.getElementById('caps_lock_warning2');
+
+            // event.getModifierState() 함수를 사용하여 Caps Lock 상태 확인
+            const capsLockEnabled = event.getModifierState && event.getModifierState('CapsLock');
+
+            if (capsLockEnabled) {
+                capsLockWarning.innerText = 'Caps Lock이 켜져있습니다.';
+                capsLockWarning.style.display = 'block';
+            } else {
+                capsLockWarning.style.display = 'none';
+            }
+        }
+
+        document.getElementById('user_pw').addEventListener('keyup', function() {
+            var password = document.getElementById('user_pw').value;
+
+            var hasLetter = /[a-zA-Z]/.test(password);
+            var hasNumber = /\d/.test(password);
+            var hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+
+            if (password.length < 8 || password.length > 20) {
+                document.getElementById('su_pw_error').innerText = '8~20자여야 합니다.';
+                document.getElementById('su_pw_error').style.display = 'block';
+            } else if (hasLetter && hasNumber && hasSpecialChar) {
+                document.getElementById('su_pw_error').innerText = '';
+                document.getElementById('su_pw_error').style.display = 'none';
+            } else {
+                document.getElementById('su_pw_error').innerText = '영문, 숫자, 특수문자를 포함해야합니다.';
+                document.getElementById('su_pw_error').style.display = 'block';
+            }
         });
+
+        document.getElementById('user_pwck').addEventListener('keyup', function() {
+            var password = document.getElementById('user_pw').value;
+            var confirmPassword = document.getElementById('user_pwck').value;
+
+            if (password === confirmPassword) {
+                document.getElementById('su_pwck_error').innerText = '비밀번호가 일치합니다.';
+                document.getElementById('su_pwck_error').style.color = 'green';
+                document.getElementById('su_pwck_error').style.display = 'block';
+            } else {
+                document.getElementById('su_pwck_error').innerText = '비밀번호가 일치하지 않습니다.';
+                document.getElementById('su_pwck_error').style.color = 'red';
+                document.getElementById('su_pwck_error').style.display = 'block';
+            }
+        });
+
+        document.getElementById('signup_cancel_button').addEventListener('click', function() {
+            history.go(-1); // 전 화면으로 돌아가는 동작
+        });
+
+        document.getElementById('user_pw').addEventListener('keydown', function(event) {
+            if (document.activeElement === document.getElementById('user_pw')) {
+                checkCapsLock1(event);
+            }
+        });
+
+        document.getElementById('user_pwck').addEventListener('keydown', function(event) {
+            if (document.activeElement === document.getElementById('user_pwck')) {
+                checkCapsLock2(event);
+            }
+        });
+
+        document.getElementById('user_pw').addEventListener('blur', function() {
+            document.getElementById('caps_lock_warning1').style.display = 'none';
+        });
+
+        document.getElementById('user_pwck').addEventListener('blur', function() {
+            document.getElementById('caps_lock_warning2').style.display = 'none';
+        });
+
+        document.getElementById('user_pw').addEventListener('blur', function() {
+            document.getElementById('su_pw_error').style.display = 'none';
+        });
+
+        document.getElementById('user_pwck').addEventListener('blur', function() {
+            document.getElementById('su_pwck_error').style.display = 'none';
+        });
+
+        // 필드가 비어있는지 확인하는 함수
+        function isEmpty(fieldValue) {
+            return fieldValue.trim() === "";
+        }
+
+        // 특정 필드에 오류 메시지를 표시하는 함수
+        function displayError(fieldId, errorMessage) {
+            document.getElementById(fieldId).textContent = errorMessage;
+        }
+
+        // 제출 전에 폼을 유효성 검사하는 함수
+        function validateForm() {
+            // 오류 메시지 초기화
+            document.getElementById("su_name_error").textContent = "";
+            document.getElementById("su_id_error").textContent = "";
+            document.getElementById("su_pw_error").textContent = "";
+            document.getElementById("su_pwck_error").textContent = "";
+            document.getElementById("su_birth_error").textContent = "";
+            document.getElementById("su_email_error").textContent = "";
+            document.getElementById("su_number_error").textContent = "";
+
+            // 폼 값 가져오기
+            var userName = document.getElementById("user_name").value;
+            var userId = document.getElementById("user_id").value;
+            var userPw = document.getElementById("user_pw").value;
+            var userPwck = document.getElementById("user_pwck").value;
+            var userBirthYear = document.getElementById("user_birth_year").value;
+            var userBirthMonth = document.getElementById("user_birth_month").value;
+            var userBirthDay = document.getElementById("user_birth_day").value;
+            var userEmail = document.getElementById("user_email").value;
+            var userNumber = document.getElementById("user_number").value;
+
+            // 각 필드 유효성 검사
+            var isValid = true;
+
+            if (isEmpty(userName)) {
+                displayError("su_name_error", "이름을 입력해주세요.");
+                isValid = false;
+            }
+
+            if (isEmpty(userId)) {
+                displayError("su_id_error", "아이디를 입력해주세요.");
+                isValid = false;
+            }
+
+            if (isEmpty(userPw)) {
+                displayError("su_pw_error", "비밀번호를 입력해주세요.");
+                isValid = false;
+            }
+
+            if (isEmpty(userPwck)) {
+                displayError("su_pwck_error", "비밀번호 확인을 입력해주세요.");
+                isValid = false;
+            }
+
+            if (userPw !== userPwck) {
+                displayError("su_pwck_error", "비밀번호가 일치하지 않습니다.");
+                isValid = false;
+            }
+
+            if (isEmpty(userBirthYear) || isEmpty(userBirthMonth) || isEmpty(userBirthDay)) {
+                displayError("su_birth_error", "생년월일을 선택해주세요.");
+                isValid = false;
+            }
+
+            if (isEmpty(userEmail)) {
+                displayError("su_email_error", "이메일을 입력해주세요.");
+                isValid = false;
+            }
+
+            if (isEmpty(userNumber)) {
+                displayError("su_number_error", "전화번호를 입력해주세요.");
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // 회원가입 버튼에 이벤트 리스너 추가
+        document.getElementById("signup_button").addEventListener("click", function(event) {
+            if (!validateForm()) {
+                event.preventDefault(); // 오류가 있는 경우 폼 제출 방지
+            }
+        });
+
     </script>
 </body>
 </html>
