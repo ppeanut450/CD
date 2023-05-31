@@ -9,7 +9,7 @@
 <body>
   <div class="container">
     <div class="screen">
-      <div class="screen__content">
+      <div class="screen_content">
         <!-- 상단 로고 -->
         <a href="_main_page.html">
           <button type="flavor_logo" class="flavor_logo">
@@ -20,14 +20,14 @@
         <!-- 로그인 창 (아이디, 비밀번호, 로그인 유지 체크박스, 로그인 버튼) -->
         <form class="login">
           <!-- 아이디 -->
-          <div class="login__field">
-            <input type="text" id="login_id" class="login__input" placeholder="아이디"> 
+          <div class="login_field">
+            <input type="text" id="login_id" class="login_input" placeholder="아이디"> 
           </div>
           <span class="error_message" id="login_id_error"></span>
 
           <!-- 비밀번호 -->
-          <div class="login__field">
-            <input type="password" id="login_pw" class="login__input" placeholder="비밀번호">
+          <div class="login_field">
+            <input type="password" id="login_pw" class="login_input" placeholder="비밀번호">
           </div>
           <span class="error_message" id="login_pw_error"></span>
           <span class="error_message" id="caps_lock_warning"></span>
@@ -35,13 +35,13 @@
           <!-- 체크박스 (클릭 시 로그인 상태 유지)-->
           <label for="checkbox">
             <input type="checkbox" id="checkbox">
-            <i class="chk__btn"></i>
+            <i class="chk_btn"></i>
             <span class="text"> 로그인 상태 유지 </span>
           </label>
 
           <!-- 로그인 버튼 -->
-          <button id="login-button" class="btn login__submit">
-            <span class="btn__text"> 로그인 </span>
+          <button id="login_button" class="btn login_submit">
+            <span class="btn_text"> 로그인 </span>
           </button>
         </form>
         <!-- 로그인 창 (아이디, 비밀번호, 로그인 유지 체크박스, 로그인 버튼) 끝 -->
@@ -56,17 +56,17 @@
 
 
         <!-- 간편 로그인 -->
-        <div class="social-login">
+        <div class="social_login">
           <h5> 간편 로그인 </h5>
-          <div class="social-icons">
+          <div class="social_icons">
             <!-- 네이버 로그인 버튼 -->
-            <button type="button" class="naver_icon" id="naver-icon">
+            <button type="button" class="naver_icon" id="naver_icon">
                 <img src="https://clova-phinf.pstatic.net/MjAxODAzMjlfOTIg/MDAxNTIyMjg3MzM3OTAy.WkiZikYhauL1hnpLWmCUBJvKjr6xnkmzP99rZPFXVwgg.mNH66A47eL0Mf8G34mPlwBFKP0nZBf2ZJn5D4Rvs8Vwg.PNG/image.png" width="60" height="60">
             </button>
             <!-- 네이버 로그인 버튼 끝 -->
 
             <!-- 카카오 로그인 버튼 -->
-            <button type="button" class="kakao_icon" id="kakao-icon">
+            <button type="button" class="kakao_icon" id="kakao_icon">
               <img src="https://cdn.icon-icons.com/icons2/2429/PNG/512/kakaotalk_logo_icon_147272.png" width="60" height="60">
             </button>
             
@@ -93,7 +93,7 @@
             <!-- 카카오 로그인 버튼 끝 -->
 
             <!-- 페이스북 로그인 버튼 -->
-            <button type="button" class="facebook_icon" id="facebook-icon">
+            <button type="button" class="facebook_icon" id="facebook_icon">
               <a href="https://ko-kr.facebook.com/"> <!-- 링크 수정 필요 -->
                 <img src="https://blog.kakaocdn.net/dn/UGS0q/btree5Viurw/l07AH1VgWJHm4stsAHLdL0/img.png" width="60" height="60">
               </a>
@@ -101,7 +101,7 @@
             <!-- 페이스북 로그인 버튼 끝 -->
 
             <!-- 구글 로그인 버튼 -->
-            <button type="button" class="google_icon" id="google-icon">
+            <button type="button" class="google_icon" id="google_icon">
               <a href="https://www.google.co.kr/"> <!-- 링크 수정 필요 -->
                 <img src="https://cdn1.iconfinder.com/data/icons/google-new-logos-1/32/google_chrome_new_logo-512.png" width="70" height="70">
               </a>
@@ -213,7 +213,7 @@
     document.getElementById('login_pw').addEventListener('keydown', checkCapsLock);
     document.getElementById('login_id').addEventListener('input', hideIdError);
     document.getElementById('login_pw').addEventListener('input', hidePasswordError);
-    document.querySelector('.login__submit').addEventListener('click', validateForm);
+    document.querySelector('.login_submit').addEventListener('click', validateForm);
     
     // function post_to_url(path, params, method='post') {
     //   const form=document.createElement('form');
