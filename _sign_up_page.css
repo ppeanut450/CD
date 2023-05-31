@@ -27,6 +27,7 @@ body {
   border: 1px solid #ccc; /* 박스 테두리 색 */
   border-radius: 5px;
   border: none;
+  box-shadow: 0px 0px 24px #ffaebd; /* 박스 그림자 */
 }
 
 .member b {
@@ -68,7 +69,7 @@ body {
 }
 
 .field_id button:hover {
-  background-color: #c28175;
+  background-color: #ffa99a;
 }
 
 .error_next_box {
@@ -105,7 +106,6 @@ select {
 
 input[type="submit"] {
   padding: 10px 20px;
-  margin-top: 10px;
   background-color: #ffa99a;
   color: #fff;
   border: none;
@@ -115,7 +115,6 @@ input[type="submit"] {
 
 input[type="reset"] {
   padding: 10px 20px;
-  margin-top: 10px;
   background-color: #ad9e98;
   color: #fff;
   border: none;
@@ -125,7 +124,7 @@ input[type="reset"] {
 
 
 input[type="submit"]:hover {
-  background-color: #c28175;
+  background-color: #ffa99a;
 }
 
 input[type="reset"]:hover {
