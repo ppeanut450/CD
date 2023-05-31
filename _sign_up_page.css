@@ -69,14 +69,15 @@ body {
 }
 
 .field_id button:hover {
-  background-color: #ffa99a;
+  background-color: #e5988a;
 }
 
-.error_next_box {
-  margin-top: 10px;
-  font-size: 13px;
-  color: red;
+.error_message {
   display: none;
+  color: red;
+  margin-top: -13px;
+  margin-left: 5px;
+  font-size: 12px;
 }
 
 .field_birth {
@@ -113,7 +114,7 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-input[type="reset"] {
+input[type="button"] {
   padding: 10px 20px;
   background-color: #ad9e98;
   color: #fff;
@@ -124,9 +125,9 @@ input[type="reset"] {
 
 
 input[type="submit"]:hover {
-  background-color: #ffa99a;
+  background-color: #e5988a;
 }
 
-input[type="reset"]:hover {
+input[type="button"]:hover {
   background-color: #847874;
 }

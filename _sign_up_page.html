@@ -7,41 +7,39 @@
 </head>
 <body>
     <form action="_sign_up_page.jsp" method="post">
+        <!-- 회원가입 항목 -->
         <div class="member">
-            
             <!-- 이름 -->
             <b>이름 *</b> 
             <div class="field_name">
                 <input type="text" id="user_name" placeholder="이름 입력">
-                <span class="error_next_box"></span>
             </div>
-            <!-- 이름 끝 -->
-            
+            <span class="error_message" id="su_name_error"></span>
 
             <!-- 아이디 & 비밀번호 -->
             <b>아이디 *</b> 
             <div class="field_id">
-                    <input type="text" id="user_id" 
+                <input type="text" id="user_id" 
                     placeholder="아이디 입력 (6~20자)" minlength="6" maxlength="20">
-                <span class="error_next_box"></span>
-                <button>중복 확인</button>
+                <button id="idck_btn">중복 확인</button>
             </div>
+            <span class="error_message" id="su_id_error"></span>
 
             <b>비밀번호 *</b> 
             <div class="field_password">
                 <input class="userpw" type="password" id="user_pw" 
-                placeholder="비밀번호 입력 (숫자, 특수문자 포함 8~20자)" minlength="8" maxlength="20">
-                <span class="error_next_box"></span>
+                    placeholder="비밀번호 입력 (숫자, 특수문자 포함 8~20자)" minlength="8" maxlength="20">
             </div>
+            <span class="error_message" id="su_pw_error"></span>
+            <span class="error_message" id="caps_lock_warning"></span>
 
             <b>비밀번호 확인 *</b>
             <div class="field_password_check">
                 <input class="userpwck" type="password" id="user_pwck"
-                placeholder="비밀번호 재입력" minlength="8" maxlength="20">
-                <span class="error_next_box"></span>
+                    placeholder="비밀번호 재입력" minlength="8" maxlength="20">
             </div>
-            <!-- 아이디 & 비밀번호 끝 -->
-            
+            <span class="error_message" id="su_pwck_error"></span>
+            <span class="error_message" id="caps_lock_warning"></span>
 
             <!-- 생년월일 -->
             <b>생년월일</b>
@@ -190,9 +188,8 @@
                         <option value="31">31일</option>
                     </select>
                 </div>
+                <span class="error_message" id="su_birth_error"></span>
             </div>
-            <!-- 생년월일 끝 -->
-
 
             <!-- 이메일 -->
             <b>이메일 *</b>
@@ -210,8 +207,7 @@
                     <option value="korea.com">korea.com</option>
                 </select>
             </div>
-            <!-- 이메일 끝 -->
-
+            <span class="error_message" id="su_email_error"></span>
         
             <!-- 전화번호 -->
             <b>전화번호</b>
@@ -220,18 +216,41 @@
                     <input type="text" name="phone" id="user_number" placeholder="휴대폰 번호 입력" maxlength="13">
                 </div>
             </div>
-            <!-- 전화번호 끝 -->
-
+            <span class="error_message" id="su_number_error"></span>
 
             <!-- 가입 버튼 -->
             <input type="submit" id="signup_button" value="가입"> </input>
-            <!-- 가입 버튼 끝 -->
             
-
             <!-- 가입 취소 버튼 -->
-            <input type="reset" id="signup_cancel_button" value="취소"> </input>
-            <!-- 가입 취소 버튼 끝-->
+            <input type="button" id="signup_cancel_button" value="취소"> </input>
         </div>
     </form>
+
+    <script>
+        document.getElementById('idck_btn').addEventListener('click', function() {
+        var userId = document.getElementById('user_id').value;
+        
+        // 아이디 중복 확인 로직을 수행합니다.
+        var isIdExist = idckExist(userId); // 중복 확인 함수를 호출합니다.
+        
+        if (isIdExist) {
+            document.getElementById('su_id_error').innerText = '이미 사용 중인 아이디입니다.';
+            document.getElementById('su_id_error').style.display = 'block'; // 오류 메시지를 표시합니다.
+        } else {
+            document.getElementById('su_id_error').style.display = 'none'; // 오류 메시지를 숨깁니다.
+        }
+        });
+
+        function idckExist(userId) {
+        // 중복 확인을 수행하는 로직을 구현합니다.
+        // 여기에서는 임의로 예시로 중복 여부를 체크하도록 구현하였습니다.
+        var existingUserIds = ['user1', 'user2', 'user3']; // 기존에 존재하는 아이디 목록
+        return existingUserIds.includes(userId); // 아이디가 기존 목록에 포함되어 있는지 확인하고 결과를 반환합니다.
+        }
+
+        document.getElementById('signup_cancel_button').addEventListener('click', function() {
+        history.go(-1); // 전 화면으로 돌아가는 동작
+        });
+    </script>
 </body>
 </html>
