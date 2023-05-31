@@ -120,26 +120,10 @@
     cursor: pointer;
 }
 
-.bar_user:hover {
-    background-color: #e1e1e1;
-}
-
-.bar_alarm:hover {
-    background-color: #e1e1e1;
-}
-
-.bar_search:hover {
-    background-color: #e1e1e1;
-}
-
-.bar_board:hover {
-    background-color: #e1e1e1;
-}
-
-.bar_rank:hover {
-    background-color: #e1e1e1;
-}
-
+.bar_user:hover,
+.bar_search:hover,
+.bar_board:hover,
+.bar_rank:hover,
 .bar_setting:hover {
     background-color: #e1e1e1;
 }
@@ -240,13 +224,13 @@ a {
 }
 
 /* FLAVOR 로고와 검색창 한 묶음 */
-.top_bar {
+.middle_part {
     text-align: center;
-    transform: translateY(50%);
+    transform: translateY(40%);
 }
 
 /* 스위치, 로그인, 회원가입 한 묶음 */
-.top_right_bar {
+.right_part {
     position: absolute;
     top: 0;
     right: 0;
@@ -314,13 +298,63 @@ a {
     border-color: #ffe3e6;
 }
 
-/* move */
 #sw_btn:checked + .switch_label .onf_btn {
     margin: 2.2px 0px 2.2px 2px;
     left: 24px;
-    background: #fff;
+    background: #ffffff;
     box-shadow: 1px 2px 3px #00000020;
     transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+}
+
+.popup_container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup_content {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    width: 300px;
+    height: 300px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* box-shadow: 0px 0px 10px #e1e1e1; */
+}
+
+.popup_text {
+    margin-top: 0px;
+}
+
+.popup_agree {
+    position: relative;
+    bottom: 0px; left: 0px;
+    margin-left: 20px;
+}
+
+.popup_disagree {
+    position: relative;
+    bottom: 0px; right: 0px;
+    margin-right: 20px;
+}
+
+.popup_actions {
+    display: flex;
+    margin-top: 190px;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.popup_content button {
+    display: block;
+    margin: 0 auto;
 }
 
 .loginAndregister {
@@ -339,31 +373,16 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* 검색창을 아래로 정렬 */
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
+    justify-content: center;
 }
 
 .search_box {
-    position: relative;
     width: 450px;
     height: auto;
     border-radius: 20px;
     border: 1px solid #bbb;
     padding: 10px 12px;
     background-color: #ffffff;
-}
-
-.search_box.expand {
-    height: 200px;
-}
-
-.search_box.expand::placeholder {
-    position: absolute;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .search_icon {
@@ -381,31 +400,7 @@ a {
 .suggested_search:focus,
 .suggested_search:hover {
     outline: none;
-    border-color: #f9958c; /* 커서 닿으면 예쁘게 불빛 ~ */
-}
-
-.recent_search {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-top: none;
-    padding: 10px;
-    display: none;
-}
-.recent_search ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.recent_search li {
-    cursor: pointer;
-    padding: 5px 0;
-}
-.recent_search li:hover {
-    background: #f1f1f1;
+    border-color: #f9958c;
 }
 
 .suggested_items_show {
