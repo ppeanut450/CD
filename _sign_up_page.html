@@ -12,14 +12,14 @@
             <!-- 이름 -->
             <b>이름 *</b> 
             <div class="field_name">
-                <input type="text" id="user_name" placeholder="이름 입력">
+                <input type="text" id="user_name" placeholder="이름 입력" onkeyup="validateName(this)">
             </div>
             <span class="error_message" id="su_name_error"></span>
 
             <!-- 아이디 & 비밀번호 -->
             <b>아이디 *</b> 
             <div class="field_id">
-                <input type="text" id="user_id" 
+                <input type="text" id="user_id"
                     placeholder="아이디 입력 (6~20자)">
                 <button id="idck_btn">중복 확인</button>
             </div>
@@ -213,7 +213,7 @@
             <b>전화번호</b>
             <div class="field_number">
                 <div>
-                    <input type="text" name="phone" id="user_number" placeholder="휴대폰 번호 입력" maxlength="13">
+                    <input type="text" name="phone" id="user_number" placeholder="휴대폰 번호 입력">
                 </div>
             </div>
             <span class="error_message" id="su_number_error"></span>
@@ -228,6 +228,13 @@
 
     <script>
 
+        function validateName(input) {
+            var regex = /^[가-힣]+$/; // 정규식으로 한글만 허용
+            var value = input.value;
+            if (!regex.test(value)) {
+                input.value = value.replace(/[^가-힣]/g, ''); // 한글 이외의 문자 제거
+            }
+        }
         
         document.getElementById('idck_btn').addEventListener('click', function() {
             var userId = document.getElementById('user_id').value;
@@ -254,6 +261,22 @@
                 document.getElementById('su_id_error').innerText = '6~20자의 영문 소문자와 숫자만 사용 가능합니다.';
                 document.getElementById('su_id_error').style.color = 'red';
                 document.getElementById('su_id_error').style.display = 'block';
+            }
+        });
+
+        // 입력 필드의 keypress 이벤트 처리
+        document.getElementById('user_id').addEventListener('input', function(event) {
+            var input = event.target.value;
+            var regex = /^[a-z0-9]+$/; // 영문 소문자와 숫자만 허용하는 정규식
+            var errorMessage = document.getElementById('su_id_error');
+
+            if (!regex.test(input)) {
+                event.target.value = input.replace(/[^a-z0-9]/g, '');
+                errorMessage.innerText = '영문 소문자와 숫자만 입력할 수 있습니다.';
+                errorMessage.style.color = 'red';
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
             }
         });
 
@@ -327,6 +350,72 @@
             }
         });
 
+        document.getElementById('email_domain_txt').disabled = true;
+        document.getElementById('email_domain_option').addEventListener('change', function() {
+            var selectedOption = this.value;
+            var emailDomainTxt = document.getElementById('email_domain_txt');
+
+            if (selectedOption === 'type') {
+            emailDomainTxt.value = '';
+            emailDomainTxt.disabled = false;
+            emailDomainTxt.focus();
+            } else {
+            emailDomainTxt.value = selectedOption;
+            emailDomainTxt.disabled = true;
+            }
+        });
+
+        document.getElementById('user_email').addEventListener('input', function(event) {
+            var input = event.target.value;
+            var regex = /^[a-zA-Z0-9!@#$%^&*()\-=+_~`{\[\\}|:;"'<,>.?/]*$/; // 영문, 숫자, 특수 기호를 제외한 문자 입력 방지 정규식
+            var errorMessage = document.getElementById('su_email_error');
+
+            if (!regex.test(input)) {
+                event.target.value = input.replace(/[^a-zA-Z0-9!@#$%^&*()\-=+_~`{\[\\}|:;"'<,>.?/]/g, '');
+                errorMessage.innerText = '영문, 숫자, 특수 기호만 입력할 수 있습니다.';
+                errorMessage.style.color = 'red';
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+            }
+        });
+
+        document.getElementById('email_domain_txt').addEventListener('input', function(event) {
+            var input = event.target.value;
+            var regex = /^[a-zA-Z.]*$/; // 영어, "." 이외의 문자 입력 방지 정규식
+            var errorMessage = document.getElementById('su_email_error');
+
+            if (!regex.test(input)) {
+                event.target.value = input.replace(/[^a-zA-Z.]/g, '');
+                errorMessage.innerText = '영문, 숫자, 온점(.)만 입력할 수 있습니다.';
+                errorMessage.style.color = 'red';
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+            }
+        });
+
+        document.getElementById('user_number').addEventListener('input', function() {
+        var phoneNumber = document.getElementById('user_number').value;
+        var formattedNumber = formatPhoneNumber(phoneNumber);
+        document.getElementById('user_number').value = formattedNumber;
+        });
+
+        function formatPhoneNumber(phoneNumber) {
+        phoneNumber = phoneNumber.replace(/[^0-9]/g, ''); // 입력된 문자열에서 숫자 이외의 문자 제거
+        var formattedNumber = '';
+        if (phoneNumber.length < 4) {
+            formattedNumber = phoneNumber;
+        } else if (phoneNumber.length < 7) {
+            formattedNumber = phoneNumber.substr(0, 3) + '-' + phoneNumber.substr(3);
+        } else if (phoneNumber.length < 11) {
+            formattedNumber = phoneNumber.substr(0, 3) + '-' + phoneNumber.substr(3, 3) + '-' + phoneNumber.substr(6);
+        } else {
+            formattedNumber = phoneNumber.substr(0, 3) + '-' + phoneNumber.substr(3, 4) + '-' + phoneNumber.substr(7, 4);
+        }
+        return formattedNumber;
+        }
+
         document.getElementById('signup_cancel_button').addEventListener('click', function() {
             history.go(-1); // 전 화면으로 돌아가는 동작
         });
@@ -359,80 +448,89 @@
             document.getElementById('su_pwck_error').style.display = 'none';
         });
 
-        // 가입 버튼 클릭 시 이벤트 처리
-        document.getElementById("signup_btn").addEventListener("click", function(event) {
-            event.preventDefault(); // 폼 전송 막기
+  
+        function validateForm(event) {
+            event.preventDefault();
 
-            var userName = document.getElementById("user_name").value;
-            var userId = document.getElementById("user_id").value;
-            var userPw = document.getElementById("user_pw").value;
-            var userPwck = document.getElementById("user_pwck").value;
-            var userEmail = document.getElementById("user_email").value;
-            var userPhone = document.getElementById("user_phone").value;
+            const signUpName = document.getElementById('user_name').value;
+            const signUpId = document.getElementById('user_id').value;
+            const signUpPw = document.getElementById('user_pw').value;
+            const signUpPwck = document.getElementById('user_pwck').value;
+            const signUpBirthYear = document.querySelector('.field_birth_year select').value;
+            const signUpBirthMonth = document.querySelector('.field_birth_month select').value;
+            const signUpBirthDay = document.querySelector('.field_birth_day select').value;
+            // 이메일
+            const signUpEmail = document.getElementById('user_email').value;
+            const signUpEmailDomainOption = document.getElementById('email_domain_option').value;
+            const signUpEmailDomainTxt = document.getElementById('email_domain_txt').value;
+            const signUpNumber = document.getElementById('user_number').value;
 
-            // 필수 입력 항목 확인
-            var isValid = true;
 
-            if (userName === "") {
-                document.getElementById("su_name_error").textContent = "이름을 입력해주세요.";
-                document.getElementById("su_name_error").style.display = "block";
-                isValid = false;
+            const signUpNameError = document.getElementById('su_name_error');
+            const signUpIdError = document.getElementById('su_id_error');
+            const signUpPwError = document.getElementById('su_pw_error');
+            const signupPwckError = document.getElementById('su_pwck_error');
+            const signUpBirthError = document.getElementById('su_birth_error');
+            const signUpEmailError = document.getElementById('su_email_error');
+            const signUpNumberError = document.getElementById('su_number_error');
+
+
+            // 이름 유효성 검사
+            if (signUpName === '') {
+                signUpNameError.innerText = '이름을 입력해주세요.';
+                signUpNameError.style.display = 'block';
             } else {
-                document.getElementById("su_name_error").textContent = "";
-                document.getElementById("su_name_error").style.display = "none";
+                signUpNameError.style.display = 'none';
             }
 
-            if (userId === "") {
-                document.getElementById("su_id_error").textContent = "아이디를 입력해주세요.";
-                document.getElementById("su_id_error").style.display = "block";
-                isValid = false;
+            // 아이디 유효성 검사
+            if (signUpId === '') {
+                signUpIdError.innerText = '아이디를 입력해주세요.';
+                signUpIdError.style.display = 'block';
             } else {
-                document.getElementById("su_id_error").textContent = "";
-                document.getElementById("su_id_error").style.display = "none";
+                signUpIdError.style.display = 'none';
             }
 
-            if (userPw === "") {
-                document.getElementById("su_pw_error").textContent = "비밀번호를 입력해주세요.";
-                document.getElementById("su_pw_error").style.display = "block";
-                isValid = false;
+            // 비밀번호 유효성 검사
+            if (signUpPw === '') {
+                signUpPwError.innerText = '비밀번호를 입력해주세요.';
+                signUpPwError.style.display = 'block';
             } else {
-                document.getElementById("su_pw_error").textContent = "";
-                document.getElementById("su_pw_error").style.display = "none";
+                signUpPwError.style.display = 'none';
             }
 
-            if (userPwck === "") {
-                document.getElementById("su_pwck_error").textContent = "비밀번호 확인을 입력해주세요.";
-                document.getElementById("su_pwck_error").style.display = "block";
-                isValid = false;
+            // 비밀번호 확인 유효성 검사
+            if (signUpPwck === '') {
+                signupPwckError.innerText = '비밀번호를 입력해주세요.';
+                signupPwckError.style.display = 'block';
             } else {
-                document.getElementById("su_pwck_error").textContent = "";
-                document.getElementById("su_pwck_error").style.display = "none";
+                signupPwckError.style.display = 'none';
             }
 
-            if (userEmail === "") {
-                document.getElementById("su_email_error").textContent = "이메일을 입력해주세요.";
-                document.getElementById("su_email_error").style.display = "block";
-                isValid = false;
+            // 생년월일 유효성 검사
+            if (signUpBirthYear === '출생년도' || signUpBirthMonth === '월' || signUpBirthDay === '일') {
+                signUpBirthError.innerText = '생년월일을 선택해주세요.';
+                signUpBirthError.style.display = 'block';
             } else {
-                document.getElementById("su_email_error").textContent = "";
-                document.getElementById("su_email_error").style.display = "none";
+                signUpBirthError.style.display = 'none';
             }
 
-            if (userPhone === "") {
-                document.getElementById("su_phone_error").textContent = "전화번호를 입력해주세요.";
-                document.getElementById("su_phone_error").style.display = "block";
-                isValid = false;
+            // 이메일 유효성 검사
+            if (signUpEmail === '' || (signUpEmailDomainOption === 'type' && signUpEmailDomainTxt === '')) {
+                signUpEmailError.innerText = '이메일을 입력해주세요.';
+                signUpEmailError.style.display = 'block';
             } else {
-                document.getElementById("su_phone_error").textContent = "";
-                document.getElementById("su_phone_error").style.display = "none";
+                    signUpEmailError.style.display = 'none';
             }
 
-            if (isValid) {
-                // 가입 처리 함수 호출 (임시로 signUp 함수 호출)
-                signUp(userName, userId, userPw, userEmail, userPhone);
-                alert("가입 완료");
+            // 전화번호 유효성 검사
+            if (signUpNumber === '') {
+                signUpNumberError.innerText = '전화번호를 입력해주세요.';
+                signUpNumberError.style.display = 'block';
+            } else {
+                signUpNumberError.style.display = 'none';
             }
-        });
+        }
 
         // 회원 가입 처리 함수
         function signUp(userName, userId, userPw, userEmail, userPhone) {
@@ -446,6 +544,9 @@
                 alert("회원 가입에 실패했습니다. 다시 시도해주세요.");
             }
         }
+
+        document.getElementById('signup_button').addEventListener('click', validateForm);
+
 
     </script>
 </body>

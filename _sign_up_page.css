@@ -65,9 +65,9 @@ body {
 .error_message {
   display: none;
   color: red;
-  margin-top: -14px;
+  margin-top: -14.2px;
   margin-left: 5px;
-  font-size: 11px;
+  font-size: 10.7px;
 }
 
 .field_birth {
@@ -75,13 +75,35 @@ body {
   align-items: center;
 }
 
+.field_birth select {
+  width: 107px;
+}
+
+.field_birth .error_message {
+  display: none;
+  position: absolute;
+  margin-top: 58px;
+  margin-left: 5px;
+}
+
 .field_email {
   display: flex;
   align-items: center;
 }
 
+/* 이메일 텍스트 상자 크기 조정 */
+#user_email {
+  width: 95px; /* 원하는 너비로 설정 */
+  font-size: 14px; /* 원하는 폰트 크기로 설정 */
+}
+
+/* 이메일 도메인 옵션 크기 조정 */
+.field_email_domain_option {
+  width: 116px; /* 원하는 너비로 설정 */
+}
+
 select {
-  margin-right: 20px;
+  /* margin-right: 20px; */
 }
 
 
