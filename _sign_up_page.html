@@ -519,8 +519,11 @@
             if (signUpEmail === '' || (signUpEmailDomainOption === 'type' && signUpEmailDomainTxt === '')) {
                 signUpEmailError.innerText = '이메일을 입력해주세요.';
                 signUpEmailError.style.display = 'block';
+            } else if (signUpEmailDomainOption !== 'type' && signUpEmailDomainTxt === '') {
+                signUpEmailError.innerText = '도메인을 선택해주세요.';
+                signUpEmailError.style.display = 'block';
             } else {
-                    signUpEmailError.style.display = 'none';
+                signUpEmailError.style.display = 'none';
             }
 
             // 전화번호 유효성 검사
