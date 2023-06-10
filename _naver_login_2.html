@@ -60,17 +60,15 @@
           <h5> 간편 로그인 </h5>
           <div class="social_icons">
             <!-- 네이버 로그인 버튼 -->
-            <button type="button" class="naver_icon" id="naver_icon">
-                <a id="naverIdLogin_loginButton" href="javascript:void(0)" onclick="naverLogin()">
-                    <img src="https://clova-phinf.pstatic.net/MjAxODAzMjlfOTIg/MDAxNTIyMjg3MzM3OTAy.WkiZikYhauL1hnpLWmCUBJvKjr6xnkmzP99rZPFXVwgg.mNH66A47eL0Mf8G34mPlwBFKP0nZBf2ZJn5D4Rvs8Vwg.PNG/image.png" width="60" height="60">
-                </a>
+            <button type="button" class="naver_icon" id="naver_icon" onclick="naverLogin()">
+                <img src="https://clova-phinf.pstatic.net/MjAxODAzMjlfOTIg/MDAxNTIyMjg3MzM3OTAy.WkiZikYhauL1hnpLWmCUBJvKjr6xnkmzP99rZPFXVwgg.mNH66A47eL0Mf8G34mPlwBFKP0nZBf2ZJn5D4Rvs8Vwg.PNG/image.png" width="60" height="60">
             </button>
 
             <script>
             var naverLogin = new naver.LoginWithNaverId (
                 {
-                    clientId: "2QtKuO8TiFjpALsFf_Yy",
-                    callbackUrl: "https://2023cd.netlify.app/oauth",
+                    clientId: "35hkynGDMuefjixhHn51",
+                    callbackUrl: "https://capstonedesignfighting.netlify.app/oauth",
                     isPopup: false,
                     callbackHandle: true
                 }
