@@ -574,6 +574,14 @@
             }
         }
 
+        document.getElementById('signup_button').addEventListener('click', function(event) {
+            var userId = document.getElementById('user_id').value;
+
+            if (userId === '') {
+                event.preventDefault(); // 기본 동작인 폼 제출을 막음
+                alert('아이디 중복 확인을 먼저 해주세요.'); // 경고 메시지 표시
+            }
+        });
         document.getElementById('signup_button').addEventListener('click', validateForm);
 
 
