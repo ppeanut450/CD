@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -7,58 +8,66 @@
 </head>
 <body>
     <div class="container">
-      <div class="form-container">
-        <form action="아이디찾기결과페이지URL" method="POST">
-          <h3>아이디 찾기</h3>
-          <div>
-            <label for="find_id_name">이름</label>
-            <input type="text" id="find_id_name" name="find_id_name" placeholder="이름을 입력하세요" required>
-            <span class="error_message" id="name_error"></span>
-          </div>
-          <div>
-            <label for="find_id_email">이메일</label>
-            <input type="email" id="find_id_email" name="find_id_email" placeholder="이메일을 입력하세요" required>
-          </div>
-          <input type="submit" value="아이디 찾기">
+        <div class="form-container">
+            <a href="_main_page.html">
+                <button type="flavor_logo" class="flavor_logo">
+                    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FNCkp7%2Fbtshz0iU8wZ%2FGdartd1kgTj0ZXMhJ0IKwk%2Fimg.png" width="248" height="84">
+                </button>
+            </a>
+        <form action="아이디 찾기 결과 페이지 URL" method="POST">
+            <div class="id_horizontal">
+                <h3> 아이디 찾기 </h3>
+                <div>
+                <label for="find_id_name"> 이름 </label>
+                <input type="name" id="find_id_name" name="find_id_name" class="box_click" placeholder="이름을 입력하세요" required>
+                <span class="error_message" id="name_error"></span>
+            </div>
+            <div>
+                <label for="find_id_email"> 이메일 </label>
+                <input type="email" id="find_id_email" name="find_id_email" class="box_click" placeholder="이메일을 입력하세요" required>
+                </div>
+                <input type="submit" value="아이디 찾기">
+            </div>
         </form>
-      </div>
-
-      <hr>
-      
-      <div class="form-container">
-        <form action="비밀번호찾기결과페이지URL" method="POST">
-          <h3>비밀번호 찾기</h3>
-          <div>
-            <label for="find_pw_name">이름</label>
-            <input type="text" id="find_pw_name" name="find_pw_name" placeholder="이름을 입력하세요" required>
-          </div>
-          <div>
-            <label for="find_pw_id">아이디</label>
-            <input type="text" id="find_pw_id" name="find_pw_id" placeholder="아이디를 입력하세요" required>
-          </div>
-          <div>
-            <label for="find_pw_email">이메일</label>
-            <input type="email" id="find_pw_email" name="find_pw_email" placeholder="이메일을 입력하세요" required>
-          </div>
-          <input type="submit" value="비밀번호 찾기">
+        </div>
+        <div class="line"></div>
+        <div class="form-container">
+        <form action="비밀번호 찾기 결과 페이지 URL" method="POST">
+            <div class="pw_horizontal">
+                <h3> 비밀번호 찾기 </h3>
+                <div>
+                <label for="find_pw_name"> 이름 </label>
+                <input type="name" id="find_pw_name" name="find_pw_name" class="box_click" placeholder="이름을 입력하세요" required>
+            </div>
+            <div>
+                <label for="find_pw_id"> 아이디 </label>
+                <input type="id" id="find_pw_id" name="find_pw_id" class="box_click" placeholder="아이디를 입력하세요" required>
+            </div>
+                <div>
+                <label for="find_pw_email"> 이메일 </label>
+                <input type="email" id="find_pw_email" name="find_pw_email" class="box_click" placeholder="이메일을 입력하세요" required>
+                </div>
+                <input type="submit" value="비밀번호 찾기">
+            </div>
         </form>
-      </div>
+        </div>
     </div>
 
-  <script>
-    function validateName(event) {
-      const name = event.target.value;
-      const nameError = document.getElementById('name_error');
+    <script>
+        function validateName(event) {
+            const name = event.target.value;
+            const nameError = document.getElementById('name_error');
 
-      if (!/^[\uAC00-\uD7AF\u1100-\u11FF\u3130-\u318F\uA960-\uA97F\uAC00-\uD7A3\uD7B0-\uD7FF]+$/.test(name)) {
-        nameError.innerText = '한글로만 입력해주세요.';
-        nameError.style.display = 'block';
-      } else {
-        nameError.style.display = 'none';
-      }
-    }
+            if (!/^[\uAC00-\uD7AF\u1100-\u11FF\u3130-\u318F\uA960-\uA97F\uAC00-\uD7A3\uD7B0-\uD7FF]+$/.test(name)) {
+                nameError.innerText = '한글로만 입력해주세요.';
+                nameError.style.display = 'block';
+            }
+            else {
+                nameError.style.display = 'none';
+            }
+        }
 
-    document.getElementById('name').addEventListener('input', validateName);
-  </script>
+        document.getElementById('name').addEventListener('input', validateName);
 
-  </body>
+    </script>
+</body>
