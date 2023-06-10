@@ -60,7 +60,7 @@
           <h5> 간편 로그인 </h5>
           <div class="social_icons">
             <!-- 네이버 로그인 버튼 -->
-            <button type="button" class="naver_icon" id="naver_icon" onclick="naverLogin()">
+            <button type="button" class="naver_icon" id="naver_icon">
                 <img src="https://clova-phinf.pstatic.net/MjAxODAzMjlfOTIg/MDAxNTIyMjg3MzM3OTAy.WkiZikYhauL1hnpLWmCUBJvKjr6xnkmzP99rZPFXVwgg.mNH66A47eL0Mf8G34mPlwBFKP0nZBf2ZJn5D4Rvs8Vwg.PNG/image.png" width="60" height="60">
             </button>
 
@@ -68,7 +68,7 @@
             var naverLogin = new naver.LoginWithNaverId (
                 {
                     clientId: "2QtKuO8TiFjpALsFf_Yy",
-                    callbackUrl: "https://2023cd.netlify.app/_main_page.html",
+                    callbackUrl: "https://2023cd.netlify.app/oauth",
                     isPopup: false,
                     callbackHandle: true
                 }
@@ -77,23 +77,22 @@
             naverLogin.init();
 
             window.addEventListener('load', function () {
-            naverLogin.getLoginStatus(function (status) {
-                if (status) {
-                    var email = naverLogin.user.getEmail();
-                    
-                    console.log(naverLogin.user);
-                    
-                    if( email == undefined || email == null) {
-                        alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
-                        naverLogin.reprompt();
-                        return;
+                naverLogin.getLoginStatus(function (status) {
+                    if (status) {
+                        var email = naverLogin.user.getEmail();
+                        
+                        console.log(naverLogin.user);
+                        
+                        if( email == undefined || email == null) {
+                            alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
+                            naverLogin.reprompt();
+                            return;
+                        }
+                    } else {
+                        console.log("callback 처리에 실패하였습니다.");
                     }
-                } else {
-                    console.log("callback 처리에 실패하였습니다.");
-                }
+                });
             });
-            });
-
 
             var testPopUp;
             function openPopUp() {
