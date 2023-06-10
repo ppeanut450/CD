@@ -21,7 +21,7 @@
             <div class="field_id">
                 <input type="text" id="user_id"
                     placeholder="아이디 입력 (6~20자)">
-                <button id="idck_btn">중복 확인</button>
+                <button id="idck_btn" onclick="checkDuplicate()">중복 확인</button>
             </div>
             <span class="error_message" id="su_id_error"></span>
 
@@ -244,33 +244,50 @@
             document.getElementById('su_name_error').style.display = 'none';
         });
         
-        document.getElementById('idck_btn').addEventListener('click', function() {
+        var isIdChecked = false; // 중복 체크 여부를 저장하는 변수
+
+        function checkDuplicate() {
             var userId = document.getElementById('user_id').value;
-        
-            // 아이디 중복 확인 로직을 수행합니다.
-            var isIdExist = idckExist(userId); // 중복 확인 함수를 호출합니다.
             
             // 아이디 길이 확인
             if (userId.length >= 6 && userId.length <= 20) {
-                // 중복 확인 로직 수행
+                // 아이디 중복 확인 로직을 수행합니다.
+                var isIdExist = idckExist(userId); // 중복 확인 함수를 호출합니다.
+                
                 if (isIdExist) {
                     // 중복된 아이디인 경우 오류 메시지 표시
                     document.getElementById('su_id_error').innerText = '이미 사용 중인 아이디입니다.';
                     document.getElementById('su_id_error').style.color = 'red';
                     document.getElementById('su_id_error').style.display = 'block';
+                    isIdChecked = false; // 중복 체크 여부를 false로 설정
                 } else {
                     // 중복되지 않은 아이디인 경우 오류 메시지 숨김
-                    document.getElementById('su_id_error').innerText = '사용 가능한 아이디입니다.';
-                    document.getElementById('su_id_error').style.color = 'green';
-                    document.getElementById('su_id_error').style.display = 'block';
+                    document.getElementById('su_id_error').innerText = '';
+                    document.getElementById('su_id_error').style.display = 'none';
+                    isIdChecked = true; // 중복 체크 여부를 true로 설정
                 }
             } else {
                 // 아이디 길이 오류 메시지 표시
                 document.getElementById('su_id_error').innerText = '6~20자의 영문 소문자와 숫자만 사용 가능합니다.';
                 document.getElementById('su_id_error').style.color = 'red';
                 document.getElementById('su_id_error').style.display = 'block';
+                isIdChecked = false; // 중복 체크 여부를 false로 설정
             }
-        });
+        }
+
+        function submitForm() {
+            if (!isIdChecked) {
+                // 아이디 중복 체크가 되지 않았을 경우 경고 메시지 표시
+                document.getElementById('su_id_error').innerText = '아이디 중복 체크를 해주세요.';
+                document.getElementById('su_id_error').style.color = 'red';
+                document.getElementById('su_id_error').style.display = 'block';
+                return; // 가입 진행을 멈춥니다.
+            }
+
+            // 이 외의 가입 로직을 수행하는 코드를 추가하세요.
+
+            // 폼을 제출하는 로직 등을 수행합니다.
+        }
 
         // 입력 필드의 keypress 이벤트 처리
         document.getElementById('user_id').addEventListener('input', function(event) {
@@ -574,14 +591,6 @@
             }
         }
 
-        document.getElementById('signup_button').addEventListener('click', function(event) {
-            var userId = document.getElementById('user_id').value;
-
-            if (userId === '') {
-                event.preventDefault(); // 기본 동작인 폼 제출을 막음
-                alert('아이디 중복 확인을 먼저 해주세요.'); // 경고 메시지 표시
-            }
-        });
         document.getElementById('signup_button').addEventListener('click', validateForm);
 
 
