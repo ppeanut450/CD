@@ -214,6 +214,7 @@
     document.getElementById('login_id').addEventListener('input', hideIdError);
     document.getElementById('login_pw').addEventListener('input', hidePasswordError);
     document.querySelector('.login_submit').addEventListener('click', validateForm);
+    document.querySelector('.login_submit').addEventListener('click', postLoginForm);
     
     // function post_to_url(path, params, method='post') {
     //   const form=document.createElement('form');
