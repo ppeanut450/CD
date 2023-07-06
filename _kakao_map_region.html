@@ -1,73 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>지역별 검색</title>
-    <link rel="stylesheet" href="_kakao_map_region.css">
+  <meta charset="utf-8">
+  <title>지역별 검색</title>
+  <style>
+    #map {
+      width: 100%;
+      height: 400px;
+    }
+  </style>
 </head>
 <body>
-<div class="map_wrap">
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+  <div id="map"></div>
+  <div>
+    <input type="text" id="searchInput" placeholder="지역 검색">
+    <button id="searchButton">검색</button>
+  </div>
 
-    <div id="menu_wrap" class="bg_white">
-        <div class="option">
-            <div>
-                <form onsubmit="searchPlaces(); return false;">
-                    <input type="text" placeholder="지역별 검색" id="region" size="15"> 
-                    <button type="submit" id="submitButton">검색</button> 
-                </form>
-            </div>
-        </div>
-        <hr>
-        <ul id="placesList"></ul>
-        <div id="pagination"></div>
-    </div>
-</div>
+  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=0560729fbda53d06035a69b6f812c484"></script>
+  <script>
+    var mapContainer = document.getElementById('map'); // 지도를 표시할 div
+    var mapOptions = {
+      center: new kakao.maps.LatLng(37.5665, 126.9780), // 초기 지도 중심 좌표 (서울)
+      level: 8 // 초기 지도 확대/축소 레벨
+    };
 
-<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=0560729fbda53d06035a69b6f812c484&libraries=services"></script>
-<script>
-  var container = document.getElementById('map');
-  var options = {
-    center: new kakao.maps.LatLng(37.5665, 126.9780),
-    level: 8
-  };
-  var map = new kakao.maps.Map(container, options);
+    var map = new kakao.maps.Map(mapContainer, mapOptions); // 지도 생성
 
-  var ps = new kakao.maps.services.Places();
-  var searchInput = document.getElementById('region');
-  var searchButton = document.getElementById('submitButton');
+    var places = new kakao.maps.services.Places(); // 장소 검색 객체 생성
 
-  searchButton.addEventListener('click', function() {
-    var query = searchInput.value;
-    ps.keywordSearch(query, function(data, status) {
-      if (status === kakao.maps.services.Status.OK) {
-        var bounds = new kakao.maps.LatLngBounds();
-        for (var i = 0; i < data.length; i++) {
-          displayMarker(data[i]);
-          bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+    var searchInput = document.getElementById('searchInput');
+    var searchButton = document.getElementById('searchButton');
+
+    searchButton.addEventListener('click', function() {
+      var query = searchInput.value;
+
+      places.keywordSearch(query, function(result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+          var bounds = new kakao.maps.LatLngBounds();
+
+          for (var i = 0; i < result.length; i++) {
+            var place = result[i];
+
+            // 마커 생성
+            var marker = new kakao.maps.Marker({
+              map: map,
+              position: new kakao.maps.LatLng(place.y, place.x)
+            });
+
+            // 인포윈도우 생성
+            var infowindow = new kakao.maps.InfoWindow({
+              content: '<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>'
+            });
+
+            // 마커 클릭 시 인포윈도우 열기
+            kakao.maps.event.addListener(marker, 'click', function() {
+              infowindow.open(map, marker);
+            });
+
+            bounds.extend(new kakao.maps.LatLng(place.y, place.x));
+          }
+
+          // 검색된 장소들을 포함하는 범위로 지도 이동 및 확대/축소
+          map.setBounds(bounds);
         }
-        map.setBounds(bounds);
-      } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-        alert('검색 결과가 없습니다.');
-      } else if (status === kakao.maps.services.Status.ERROR) {
-        alert('검색 중 오류가 발생했습니다.');
-      }
+      });
     });
-  });
-
-  function displayMarker(place) {
-    var marker = new kakao.maps.Marker({
-      map: map,
-      position: new kakao.maps.LatLng(place.y, place.x)
-    });
-
-    var infowindow = new kakao.maps.InfoWindow({
-      content: '<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>'
-    });
-    kakao.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(map, marker);
-    });
-  }
-</script>
+  </script>
 </body>
 </html>
