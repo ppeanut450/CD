@@ -112,8 +112,10 @@
           level = 9;
         }
 
-        map.setLevel(level);
-        map.panTo(centerPoint);
+        if (centerPoint && level) {
+          map.setLevel(level);
+          map.panTo(centerPoint);
+        }
       }
     });
   </script>
