@@ -32,8 +32,6 @@
       <option value="충남">충청남도</option>
       <option value="충북">충청북도</option>
     </select>
-    <input type="text" id="searchInput" placeholder="음식점 검색">
-    <button id="searchButton">검색</button>
   </div>
   <div id="map"></div>
 
@@ -50,8 +48,6 @@
     var places = new kakao.maps.services.Places();
 
     var categorySelect = document.getElementById('categorySelect');
-    var searchInput = document.getElementById('searchInput');
-    var searchButton = document.getElementById('searchButton');
 
     categorySelect.addEventListener('change', function() {
       var category = categorySelect.value;
@@ -119,31 +115,6 @@
         map.setLevel(level);
         map.panTo(centerPoint);
       }
-    });
-
-    searchButton.addEventListener('click', function() {
-      var query = searchInput.value;
-
-      var center = map.getCenter();
-      var level = map.getLevel();
-
-      places.keywordSearch(query, function(result, status) {
-        if (status === kakao.maps.services.Status.OK) {
-          var bounds = new kakao.maps.LatLngBounds();
-
-          for (var i = 0; i < result.length; i++) {
-            var place = result[i];
-            var marker = new kakao.maps.Marker({
-              map: map,
-              position: new kakao.maps.LatLng(place.y, place.x)
-            });
-
-            bounds.extend(new kakao.maps.LatLng(place.y, place.x));
-          }
-
-          map.setBounds(bounds);
-        }
-      });
     });
   </script>
 </body>
