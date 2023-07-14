@@ -9,375 +9,143 @@
       height: 400px;
     }
   </style>
-  <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0560729fbda53d06035a69b6f812c484&libraries=services, drawing"></script>
+  <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0560729fbda53d06035a69b6f812c484&libraries=services"></script>
   <script>
     function showMap() {
-      var regionSelect = document.getElementById("regionSelect");
-      var selectedOption = regionSelect.options[regionSelect.selectedIndex].value;
-      var mapContainer = document.getElementById("map");
+        var regionSelect = document.getElementById("regionSelect");
+        var selectedOption = regionSelect.options[regionSelect.selectedIndex].value;
+        var mapContainer = document.getElementById("map");
 
-      // 기존 지도 제거
-      mapContainer.innerHTML = "";
+        // 기존 지도 제거
+        mapContainer.innerHTML = "";
 
-      // 선택된 지역에 맞는 지도 출력
-      if (selectedOption === "강원") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(37.5555, 128.2092),
-          level: 11 
-        });
+        // 선택된 지역에 맞는 지도 출력
+        if (selectedOption === "강원") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(37.5555, 128.2092),
+            level: 11 
+            }); 
+        } else if (selectedOption === "경기") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(37.4138, 127.5183),
+            level: 11
+            });
+        } else if (selectedOption === "경남") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(35.2598, 128.6642),
+            level: 11
+            });
+        } else if (selectedOption === "경북") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(36.4919, 128.8889),
+            level: 11
+            });
+        } else if (selectedOption === "광주") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(35.1601, 126.8514),
+            level: 9
+            });
+        } else if (selectedOption === "대구") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(35.8666, 128.6072),
+            level: 9
+            });
+        } else if (selectedOption === "대전") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(36.3504, 127.3845),
+            level: 9
+            });
+        } else if (selectedOption === "부산") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(35.1796, 129.0756),  
+            level: 9
+            });
+        } else if (selectedOption === "서울") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(37.5665, 126.9780), 
+            level: 9
+            });
+        } else if (selectedOption === "세종") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(36.4808, 127.2892), 
+            level: 9
+            });
+        } else if (selectedOption === "울산") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(35.5384, 129.3114), 
+            level: 9
+            });
+        } else if (selectedOption === "인천") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(37.4563, 126.7052),
+            level: 9
+            });
+        } else if (selectedOption === "전남") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(34.8679, 126.9910),
+            level: 11
+            });
+        } else if (selectedOption === "전북") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(35.7167, 127.1447), 
+            level: 11
+            });
+        } else if (selectedOption === "제주") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(33.3642, 126.5340),  
+            level: 10
+            });
+        } else if (selectedOption === "충남") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(36.6588, 126.6729),  
+            level: 11
+            });
+        } else if (selectedOption === "충북") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(36.6356, 127.4912),
+            level: 11
+            });
+        }
 
-        // 강원도 폴리곤 생성
-        var polygon = new kakao.maps.Polygon({
-          map: map,
-          path: [
-            new kakao.maps.LatLng(37.895, 128.248),
-            new kakao.maps.LatLng(37.635, 128.249),
-            new kakao.maps.LatLng(37.635, 128.537),
-            new kakao.maps.LatLng(37.895, 128.537)
-          ],
-          strokeWeight: 2,
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.7,
-          fillColor: "#FF0000",
-          fillOpacity: 0.3
-        });
-      } else if (selectedOption === "경기") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(37.4138, 127.5183),
-          level: 11
-        });
+        // 검색창 이벤트 처리
+        var keywordInput = document.getElementById("keywordInput");
+        var searchButton = document.getElementById("searchButton");
 
-        // 경기도 폴리곤 생성
-        var polygon = new kakao.maps.Polygon({
-          map: map,
-          path: [
-            new kakao.maps.LatLng(37.895, 127.669),
-            new kakao.maps.LatLng(37.216, 127.669),
-            new kakao.maps.LatLng(37.216, 127.922),
-            new kakao.maps.LatLng(37.895, 127.922)
-          ],
-          strokeWeight: 2,
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.7,
-          fillColor: "#FF0000",
-          fillOpacity: 0.3
-        });
-      } else if (selectedOption === "경남") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(35.2598, 128.6642),
-          level: 11
-        });
+        searchButton.onclick = function() {
+          var keyword = keywordInput.value;
+          if (keyword === "") {
+            // 키워드를 입력하지 않았을 경우 경고 메시지 출력
+            alert("검색어를 입력해주세요.");
+            return;
+          }
 
-        // 경상남도 폴리곤 생성
-        var polygon = new kakao.maps.Polygon({
-          map: map,
-          path: [
-            new kakao.maps.LatLng(35.873, 128.034),
-            new kakao.maps.LatLng(34.743, 128.034),
-            new kakao.maps.LatLng(34.743, 129.464),
-            new kakao.maps.LatLng(35.873, 129.464)
-          ],
-          strokeWeight: 2,
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.7,
-          fillColor: "#FF0000",
-          fillOpacity: 0.3
-        });
-      } else if (selectedOption === "경북") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(36.4919, 128.8889),
-          level: 11
-        });
+          // 장소 검색 객체 생성
+          var placesService = new kakao.maps.services.Places();
 
-        // 경상북도 폴리곤 생성
-        var polygon = new kakao.maps.Polygon({
-          map: map,
-          path: [
-            new kakao.maps.LatLng(37.108, 128.034),
-            new kakao.maps.LatLng(35.973, 128.034),
-            new kakao.maps.LatLng(35.973, 129.815),
-            new kakao.maps.LatLng(37.108, 129.815)
-          ],
-          strokeWeight: 2,
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.7,
-          fillColor: "#FF0000",
-          fillOpacity: 0.3
-        });
-      } else if (selectedOption === "광주") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(35.1601, 126.8514),
-          level: 9
-        });
+          // 선택된 지역 내에서 키워드로 장소 검색
+          placesService.keywordSearch(keyword, function(result, status) {
+            if (status === kakao.maps.services.Status.OK) {
+              // 검색 결과가 있을 경우 마커와 인포윈도우 생성
+              for (var i = 0; i < result.length; i++) {
+                var place = result[i];
+                var marker = new kakao.maps.Marker({
+                  position: new kakao.maps.LatLng(place.y, place.x),
+                  map: map
+                });
+                var infowindow = new kakao.maps.InfoWindow({
+                  content: '<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>'
+                });
+                kakao.maps.event.addListener(marker, 'click', makeClickListener(infowindow, map, marker));
+              }
+            }
+          });
+        };
+    }
 
-        // 광주광역시 폴리곤 생성
-        var polygon = new kakao.maps.Polygon({
-          map: map,
-          path: [
-            new kakao.maps.LatLng(35.295, 126.791),
-            new kakao.maps.LatLng(35.111, 126.791),
-            new kakao.maps.LatLng(35.111, 127.020),
-            new kakao.maps.LatLng(35.295, 127.020)
-          ],
-          strokeWeight: 2,
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.7,
-          fillColor: "#FF0000",
-          fillOpacity: 0.3
-        });
-      } else if (selectedOption === "대구") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(35.8666, 128.6072),
-          level: 9
-        });
-
-        // 대구광역시 폴리곤 생성
-        var polygon = new kakao.maps.Polygon({
-          map: map,
-          path: [
-            new kakao.maps.LatLng(35.992, 128.453),
-            new kakao.maps.LatLng(35.649, 128.453),
-            new kakao.maps.LatLng(35.649, 128.730),
-            new kakao.maps.LatLng(35.992, 128.730)
-          ],
-          strokeWeight: 2,
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.7,
-          fillColor: "#FF0000",
-          fillOpacity: 0.3
-        });
-      } else if (selectedOption === "대전") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(36.3504, 127.3845),
-          level: 9
-        });
-
-        // 대전광역시 폴리곤 생성
-        var polygon = new kakao.maps.Polygon({
-          map: map,
-          path: [
-            new kakao.maps.LatLng(36.545, 127.262),
-            new kakao.maps.LatLng(36.271, 127.262),
-            new kakao.maps.LatLng(36.271, 127.491),
-            new kakao.maps.LatLng(36.545, 127.491)
-          ],
-          strokeWeight: 2,
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.7,
-          fillColor: "#FF0000",
-          fillOpacity: 0.3
-        });
-      } else if (selectedOption === "부산") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(35.1796, 129.0756),
-          level: 9
-        });
-
-        // 부산광역시 폴리곤 생성
-        var polygon = new kakao.maps.Polygon({
-          map: map,
-          path: [
-            new kakao.maps.LatLng(35.436, 128.781),
-            new kakao.maps.LatLng(34.715, 128.781),
-            new kakao.maps.LatLng(34.715, 129.363),
-            new kakao.maps.LatLng(35.436, 129.363)
-          ],
-          strokeWeight: 2,
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.7,
-          fillColor: "#FF0000",
-          fillOpacity: 0.3
-        });
-      } else if (selectedOption === "서울") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(37.5665, 126.9780),
-          level: 9
-        });
-
-        // 서울특별시 폴리곤 생성
-        var polygon = new kakao.maps.Polygon({
-          map: map,
-          path: [
-            new kakao.maps.LatLng(37.816, 126.711),
-            new kakao.maps.LatLng(37.366, 126.711),
-            new kakao.maps.LatLng(37.366, 127.262),
-            new kakao.maps.LatLng(37.816, 127.262)
-          ],
-          strokeWeight: 2,
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.7,
-          fillColor: "#FF0000",
-          fillOpacity: 0.3
-        });
-      } else if (selectedOption === "세종") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(36.4808, 127.2892),
-          level: 9
-        });
-
-        // 세종특별자치시 폴리곤 생성
-        var polygon = new kakao.maps.Polygon({
-          map: map,
-          path: [
-            new kakao.maps.LatLng(36.672, 127.214),
-            new kakao.maps.LatLng(36.379, 127.214),
-            new kakao.maps.LatLng(36.379, 127.403),
-            new kakao.maps.LatLng(36.672, 127.403)
-          ],
-          strokeWeight: 2,
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.7,
-          fillColor: "#FF0000",
-          fillOpacity: 0.3
-        });
-      } else if (selectedOption === "울산") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(35.5384, 129.3114),
-          level: 9
-        });
-
-        // 울산광역시 폴리곤 생성
-        var polygon = new kakao.maps.Polygon({
-          map: map,
-          path: [
-            new kakao.maps.LatLng(35.657, 129.010),
-            new kakao.maps.LatLng(35.413, 129.010),
-            new kakao.maps.LatLng(35.413, 129.487),
-            new kakao.maps.LatLng(35.657, 129.487)
-          ],
-          strokeWeight: 2,
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.7,
-          fillColor: "#FF0000",
-          fillOpacity: 0.3
-        });
-      } else if (selectedOption === "인천") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(37.4563, 126.7052),
-          level: 9
-        });
-
-        // 인천광역시 폴리곤 생성
-        var polygon = new kakao.maps.Polygon({
-          map: map,
-          path: [
-            new kakao.maps.LatLng(37.684, 126.486),
-            new kakao.maps.LatLng(37.238, 126.486),
-            new kakao.maps.LatLng(37.238, 126.994),
-            new kakao.maps.LatLng(37.684, 126.994)
-          ],
-          strokeWeight: 2,
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.7,
-          fillColor: "#FF0000",
-          fillOpacity: 0.3
-        });
-      } else if (selectedOption === "전남") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(34.8679, 126.9910),
-          level: 11
-        });
-
-        // 전라남도 폴리곤 생성
-        var polygon = new kakao.maps.Polygon({
-          map: map,
-          path: [
-            new kakao.maps.LatLng(35.100, 126.321),
-            new kakao.maps.LatLng(34.511, 126.321),
-            new kakao.maps.LatLng(34.511, 127.294),
-            new kakao.maps.LatLng(35.100, 127.294)
-          ],
-          strokeWeight: 2,
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.7,
-          fillColor: "#FF0000",
-          fillOpacity: 0.3
-        });
-      } else if (selectedOption === "전북") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(35.7167, 127.1447),
-          level: 11
-        });
-
-        // 전라북도 폴리곤 생성
-        var polygon = new kakao.maps.Polygon({
-          map: map,
-          path: [
-            new kakao.maps.LatLng(36.163, 126.321),
-            new kakao.maps.LatLng(35.327, 126.321),
-            new kakao.maps.LatLng(35.327, 127.764),
-            new kakao.maps.LatLng(36.163, 127.764)
-          ],
-          strokeWeight: 2,
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.7,
-          fillColor: "#FF0000",
-          fillOpacity: 0.3
-        });
-      } else if (selectedOption === "제주") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(33.3642, 126.5340),
-          level: 10
-        });
-
-        // 제주도 폴리곤 생성
-        var polygon = new kakao.maps.Polygon({
-          map: map,
-          path: [
-            new kakao.maps.LatLng(33.830, 126.131),
-            new kakao.maps.LatLng(33.056, 126.131),
-            new kakao.maps.LatLng(33.056, 126.956),
-            new kakao.maps.LatLng(33.830, 126.956)
-          ],
-          strokeWeight: 2,
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.7,
-          fillColor: "#FF0000",
-          fillOpacity: 0.3
-        });
-      } else if (selectedOption === "충남") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(36.6588, 126.6729),
-          level: 11
-        });
-
-        // 충청남도 폴리곤 생성
-        var polygon = new kakao.maps.Polygon({
-          map: map,
-          path: [
-            new kakao.maps.LatLng(37.032, 126.321),
-            new kakao.maps.LatLng(35.913, 126.321),
-            new kakao.maps.LatLng(35.913, 127.557),
-            new kakao.maps.LatLng(37.032, 127.557)
-          ],
-          strokeWeight: 2,
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.7,
-          fillColor: "#FF0000",
-          fillOpacity: 0.3
-        });
-      } else if (selectedOption === "충북") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(36.6356, 127.4912),
-          level: 11
-        });
-
-        // 충청북도 폴리곤 생성
-        var polygon = new kakao.maps.Polygon({
-          map: map,
-          path: [
-            new kakao.maps.LatLng(37.058, 126.321),
-            new kakao.maps.LatLng(36.186, 126.321),
-            new kakao.maps.LatLng(36.186, 128.031),
-            new kakao.maps.LatLng(37.058, 128.031)
-          ],
-          strokeWeight: 2,
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.7,
-          fillColor: "#FF0000",
-          fillOpacity: 0.3
-        });
-      }
+    function makeClickListener(infowindow, map, marker) {
+      return function() {
+        infowindow.open(map, marker);
+      };
     }
   </script>
 </head>
@@ -402,6 +170,9 @@
     <option value="충남">충청남도</option>
     <option value="충북">충청북도</option>
   </select>
+
+  <input type="text" id="keywordInput" placeholder="검색어를 입력하세요">
+  <button id="searchButton">검색</button>
 
   <div id="map"></div>
 </body>
