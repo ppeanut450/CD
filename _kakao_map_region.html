@@ -56,66 +56,23 @@
         map.setLevel(8);
         map.panTo(new kakao.maps.LatLng(37.5665, 126.9780));
       } else {
-        var centerPoint = null;
-        var level = null;
+        var geocoder = new kakao.maps.services.Geocoder();
 
-        if (category === '강원') {
-          centerPoint = new kakao.maps.LatLng(37.5552, 128.2098);
-          level = 9;
-        } else if (category === '경기') {
-          centerPoint = new kakao.maps.LatLng(37.5670, 127.1903);
-          level = 9;
-        } else if (category === '경남') {
-          centerPoint = new kakao.maps.LatLng(35.2383, 128.6922);
-          level = 9;
-        } else if (category === '경북') {
-          centerPoint = new kakao.maps.LatLng(36.4919, 128.8889);
-          level = 9;
-        } else if (category === '광주') {
-          centerPoint = new kakao.maps.LatLng(35.1601, 126.8514);
-          level = 9;
-        } else if (category === '대구') {
-          centerPoint = new kakao.maps.LatLng(35.8666, 128.6072);
-          level = 9;
-        } else if (category === '대전') {
-          centerPoint = new kakao.maps.LatLng(36.3504, 127.3845);
-          level = 9;
-        } else if (category === '부산') {
-          centerPoint = new kakao.maps.LatLng(35.1796, 129.0756);
-          level = 9;
-        } else if (category === '서울') {
-          centerPoint = new kakao.maps.LatLng(37.5665, 126.9780);
-          level = 9;
-        } else if (category === '세종') {
-          centerPoint = new kakao.maps.LatLng(36.4808, 127.2892);
-          level = 9;
-        } else if (category === '울산') {
-          centerPoint = new kakao.maps.LatLng(35.5384, 129.3114);
-          level = 9;
-        } else if (category === '인천') {
-          centerPoint = new kakao.maps.LatLng(37.4563, 126.7052);
-          level = 9;
-        } else if (category === '전남') {
-          centerPoint = new kakao.maps.LatLng(34.8679, 126.9910);
-          level = 9;
-        } else if (category === '전북') {
-          centerPoint = new kakao.maps.LatLng(35.7167, 127.1447);
-          level = 9;
-        } else if (category === '제주') {
-          centerPoint = new kakao.maps.LatLng(33.3642, 126.5340);
-          level = 9;
-        } else if (category === '충남') {
-          centerPoint = new kakao.maps.LatLng(36.6588, 126.6729);
-          level = 9;
-        } else if (category === '충북') {
-          centerPoint = new kakao.maps.LatLng(36.6356, 127.4912);
-          level = 9;
-        }
+        geocoder.addressSearch(category, function(result, status) {
+          if (status === kakao.maps.services.Status.OK) {
+            var bounds = new kakao.maps.LatLngBounds();
 
-        if (centerPoint && level) {
-          map.setLevel(level);
-          map.panTo(centerPoint);
-        }
+            for (var i = 0; i < result.length; i++) {
+              var marker = new kakao.maps.Marker({
+                position: new kakao.maps.LatLng(result[i].y, result[i].x)
+              });
+              marker.setMap(map);
+              bounds.extend(new kakao.maps.LatLng(result[i].y, result[i].x));
+            }
+
+            map.setBounds(bounds);
+          }
+        });
       }
     });
   </script>
