@@ -12,101 +12,102 @@
   <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0560729fbda53d06035a69b6f812c484&libraries=services"></script>
   <script>
     function showMap() {
-      var regionSelect = document.getElementById("regionSelect");
-      var selectedOption = regionSelect.options[regionSelect.selectedIndex].value;
-      var mapContainer = document.getElementById("map");
+        var regionSelect = document.getElementById("regionSelect");
+        var selectedOption = regionSelect.options[regionSelect.selectedIndex].value;
+        var mapContainer = document.getElementById("map");
 
-      // 기존 지도 제거
-      mapContainer.innerHTML = "";
+        // 기존 지도 제거
+        mapContainer.innerHTML = "";
 
-      // 선택된 지역에 맞는 지도 출력
-      if (selectedOption === "강원") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(37.5555, 128.2092),
-          level: 9 
-        });
-      } else if (selectedOption === "경기") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(37.4138, 127.5183),
-          level: 9
-        });
-      } else if (selectedOption === "경남") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(35.2598, 128.6642),
-          level: 9
-        });
-      } else if (selectedOption === "경북") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(36.4919, 128.8889),
-          level: 9
-        });
-      } else if (selectedOption === "광주") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(35.1601, 126.8514),
-          level: 9
-        });
-      } else if (selectedOption === "대구") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(36.3504, 127.3845),
-          level: 9
-        });
-      } else if (selectedOption === "대전") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(36.3504, 127.3845),
-          level: 9
-        });
-      } else if (selectedOption === "부산") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(35.1796, 129.0756),  
-          level: 9
-        });
-      } else if (selectedOption === "서울") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(37.5665, 126.9780), 
-          level: 9
-        });
-      } else if (selectedOption === "세종") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(36.4808, 127.2892), 
-          level: 9
-        });
-      } else if (selectedOption === "울산") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(35.5384, 129.3114), 
-          level: 9
-        });
-      } else if (selectedOption === "인천") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(37.4563, 126.7052),
-          level: 9
-        });
-      } else if (selectedOption === "전남") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(34.8679, 126.9910),
-          level: 9
-        });
-      } else if (selectedOption === "전북") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(35.7167, 127.1447), 
-          level: 9
-        });
-      } else if (selectedOption === "제주") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(33.3642, 126.5340),  
-          level: 9
-        });
-      } else if (selectedOption === "충남") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(36.6588, 126.6729),  
-          level: 9
-        });
-      } else if (selectedOption === "충북") {
-        var map = new kakao.maps.Map(mapContainer, {
-          center: new kakao.maps.LatLng(36.6356, 127.4912),
-          level: 9
-        });
-      }
+        // 선택된 지역에 맞는 지도 출력
+        if (selectedOption === "강원") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(37.5555, 128.2092),
+            level: 9 
+            });
+        } else if (selectedOption === "경기") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(37.4138, 127.5183),
+            level: 9
+            });
+        } else if (selectedOption === "경남") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(35.2598, 128.6642),
+            level: 9
+            });
+        } else if (selectedOption === "경북") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(36.4919, 128.8889),
+            level: 9
+            });
+        } else if (selectedOption === "광주") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(35.1601, 126.8514),
+            level: 9
+            });
+        } else if (selectedOption === "대구") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(35.8666, 128.6072),
+            level: 9
+            });
+        } else if (selectedOption === "대전") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(36.3504, 127.3845),
+            level: 9
+            });
+        } else if (selectedOption === "부산") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(35.1796, 129.0756),  
+            level: 9
+            });
+        } else if (selectedOption === "서울") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(37.5665, 126.9780), 
+            level: 9
+            });
+        } else if (selectedOption === "세종") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(36.4808, 127.2892), 
+            level: 9
+            });
+        } else if (selectedOption === "울산") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(35.5384, 129.3114), 
+            level: 9
+            });
+        } else if (selectedOption === "인천") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(37.4563, 126.7052),
+            level: 9
+            });
+        } else if (selectedOption === "전남") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(34.8679, 126.9910),
+            level: 9
+            });
+        } else if (selectedOption === "전북") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(35.7167, 127.1447), 
+            level: 9
+            });
+        } else if (selectedOption === "제주") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(33.3642, 126.5340),  
+            level: 9
+            });
+        } else if (selectedOption === "충남") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(36.6588, 126.6729),  
+            level: 9
+            });
+        } else if (selectedOption === "충북") {
+            var map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(36.6356, 127.4912),
+            level: 9
+            });
+        }
     }
+
   </script>
 </head>
 <body>
