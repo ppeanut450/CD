@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>지역별 검색</title>
+  <title>음식점 지역별 검색</title>
   <style>
     #map {
       width: 100%;
@@ -11,29 +11,69 @@
   </style>
 </head>
 <body>
-  <div id="map"></div>
   <div>
-    <input type="text" id="searchInput" placeholder="지역 검색">
+    <select id="categorySelect">
+      <option value="">전체</option>
+      <option value="경기도">경기도</option>
+      <option value="충청남도">충청남도</option>
+      <option value="충청북도">충청북도</option>
+      <option value="서울특별시">서울특별시</option>
+      <option value="강원도">강원도</option>
+      <!-- 다른 지역도 추가 -->
+    </select>
+    <input type="text" id="searchInput" placeholder="음식점 검색">
     <button id="searchButton">검색</button>
   </div>
+  <div id="map"></div>
 
-  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=0560729fbda53d06035a69b6f812c484"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0560729fbda53d06035a69b6f812c484"></script>
   <script>
-    var mapContainer = document.getElementById('map'); // 지도를 표시할 div
+    var mapContainer = document.getElementById('map');
     var mapOptions = {
-      center: new kakao.maps.LatLng(37.5665, 126.9780), // 초기 지도 중심 좌표 (서울)
-      level: 8 // 초기 지도 확대/축소 레벨
+      center: new kakao.maps.LatLng(37.5665, 126.9780),
+      level: 8
     };
 
-    var map = new kakao.maps.Map(mapContainer, mapOptions); // 지도 생성
+    var map = new kakao.maps.Map(mapContainer, mapOptions);
 
-    var places = new kakao.maps.services.Places(); // 장소 검색 객체 생성
+    var places = new kakao.maps.services.Places();
 
+    var categorySelect = document.getElementById('categorySelect');
     var searchInput = document.getElementById('searchInput');
     var searchButton = document.getElementById('searchButton');
 
+    categorySelect.addEventListener('change', function() {
+      var category = categorySelect.value;
+
+      if (category === '') {
+        map.setLevel(8);
+        map.panTo(new kakao.maps.LatLng(37.5665, 126.9780));
+      } else {
+        var geocoder = new kakao.maps.services.Geocoder();
+
+        geocoder.addressSearch(category, function(result, status) {
+          if (status === kakao.maps.services.Status.OK) {
+            var bounds = new kakao.maps.LatLngBounds();
+
+            for (var i = 0; i < result.length; i++) {
+              var marker = new kakao.maps.Marker({
+                position: new kakao.maps.LatLng(result[i].y, result[i].x)
+              });
+              marker.setMap(map);
+              bounds.extend(new kakao.maps.LatLng(result[i].y, result[i].x));
+            }
+
+            map.setBounds(bounds);
+          }
+        });
+      }
+    });
+
     searchButton.addEventListener('click', function() {
       var query = searchInput.value;
+
+      var center = map.getCenter();
+      var level = map.getLevel();
 
       places.keywordSearch(query, function(result, status) {
         if (status === kakao.maps.services.Status.OK) {
@@ -41,27 +81,14 @@
 
           for (var i = 0; i < result.length; i++) {
             var place = result[i];
-
-            // 마커 생성
             var marker = new kakao.maps.Marker({
               map: map,
               position: new kakao.maps.LatLng(place.y, place.x)
             });
 
-            // 인포윈도우 생성
-            var infowindow = new kakao.maps.InfoWindow({
-              content: '<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>'
-            });
-
-            // 마커 클릭 시 인포윈도우 열기
-            kakao.maps.event.addListener(marker, 'click', function() {
-              infowindow.open(map, marker);
-            });
-
             bounds.extend(new kakao.maps.LatLng(place.y, place.x));
           }
 
-          // 검색된 장소들을 포함하는 범위로 지도 이동 및 확대/축소
           map.setBounds(bounds);
         }
       });
